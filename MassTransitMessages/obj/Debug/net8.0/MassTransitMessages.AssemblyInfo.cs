@@ -14,7 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MassTransitMessages")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+172e9ed3aacff2d7124be547485f4e9174e7b66c")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f763aab8925e8a1034a490e325904b7d873f9b05")]
+>>>>>>> e1572784b70224b61288ef1457720643fa9c42e2
 [assembly: System.Reflection.AssemblyProductAttribute("MassTransitMessages")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MassTransitMessages")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

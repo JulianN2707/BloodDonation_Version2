@@ -3,25 +3,26 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Personas", "Personas\Personas.csproj", "{F9C6B987-880F-4118-A4A2-3EC82F862EAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Personas", "Personas\Personas.csproj", "{F9C6B987-880F-4118-A4A2-3EC82F862EAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Usuarios", "Usuarios\Usuarios.csproj", "{926826DA-00EF-4B44-BA2D-BE9E226C944E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Usuarios", "Usuarios\Usuarios.csproj", "{926826DA-00EF-4B44-BA2D-BE9E226C944E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solicitudes", "Solicitudes\Solicitudes.csproj", "{07095101-CA02-4125-BF03-1B2DB795D8E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solicitudes", "Solicitudes\Solicitudes.csproj", "{07095101-CA02-4125-BF03-1B2DB795D8E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonacionSangre", "DonacionSangre\DonacionSangre.csproj", "{2E752AB0-09FA-4F44-A7E1-A35B38F1F3D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DonacionSangre", "DonacionSangre\DonacionSangre.csproj", "{2E752AB0-09FA-4F44-A7E1-A35B38F1F3D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MassTransitMessages", "MassTransitMessages\MassTransitMessages.csproj", "{F793B7A5-751D-4049-B062-DCF3DC224E06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MassTransitMessages", "MassTransitMessages\MassTransitMessages.csproj", "{F793B7A5-751D-4049-B062-DCF3DC224E06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archivos", "Archivos\Archivos.csproj", "{C0B13AAE-5DE2-48B6-AC07-444B7A5DF7BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archivos", "Archivos\Archivos.csproj", "{C0B13AAE-5DE2-48B6-AC07-444B7A5DF7BD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notificaticiones.Worker", "Notification\Notificaticiones.Worker.csproj", "{06E3BD6F-60C6-418A-977E-6735EC15CADF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notificaciones", "Notificaciones\Notificaciones.csproj", "{1C836B53-0A1B-462A-A059-0DFA627ED2AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{F9C6B987-880F-4118-A4A2-3EC82F862EAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -48,5 +49,19 @@ Global
 		{C0B13AAE-5DE2-48B6-AC07-444B7A5DF7BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0B13AAE-5DE2-48B6-AC07-444B7A5DF7BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0B13AAE-5DE2-48B6-AC07-444B7A5DF7BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06E3BD6F-60C6-418A-977E-6735EC15CADF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06E3BD6F-60C6-418A-977E-6735EC15CADF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06E3BD6F-60C6-418A-977E-6735EC15CADF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06E3BD6F-60C6-418A-977E-6735EC15CADF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C836B53-0A1B-462A-A059-0DFA627ED2AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C836B53-0A1B-462A-A059-0DFA627ED2AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C836B53-0A1B-462A-A059-0DFA627ED2AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C836B53-0A1B-462A-A059-0DFA627ED2AC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E7A04C06-E025-4F5D-8032-32B949B9843A}
 	EndGlobalSection
 EndGlobal

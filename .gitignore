@@ -371,5 +371,5 @@ appsettings.development.json
 .local-chromium/
 /package.json
 # Ignorar carpetas bin y obj
-bin/
-obj/
+**/bin/
+**/obj/

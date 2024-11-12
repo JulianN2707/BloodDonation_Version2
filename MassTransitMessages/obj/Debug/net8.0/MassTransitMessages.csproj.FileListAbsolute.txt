@@ -1,0 +1,12 @@
+/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/MassTransitMessages/bin/Debug/net8.0/MassTransitMessages.deps.json
+/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/MassTransitMessages/bin/Debug/net8.0/MassTransitMessages.dll
+/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/MassTransitMessages/bin/Debug/net8.0/MassTransitMessages.pdb
+/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/MassTransitMessages/obj/Debug/net8.0/MassTransitMessages.GeneratedMSBuildEditorConfig.editorconfig
+/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/MassTransitMessages/obj/Debug/net8.0/MassTransitMessages.AssemblyInfoInputs.cache
+/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/MassTransitMessages/obj/Debug/net8.0/MassTransitMessages.AssemblyInfo.cs
+/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/MassTransitMessages/obj/Debug/net8.0/MassTransitMessages.csproj.CoreCompileInputs.cache
+/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/MassTransitMessages/obj/Debug/net8.0/MassTransitMessages.sourcelink.json
+/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/MassTransitMessages/obj/Debug/net8.0/MassTransitMessages.dll
+/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/MassTransitMessages/obj/Debug/net8.0/refint/MassTransitMessages.dll
+/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/MassTransitMessages/obj/Debug/net8.0/MassTransitMessages.pdb
+/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/MassTransitMessages/obj/Debug/net8.0/ref/MassTransitMessages.dll

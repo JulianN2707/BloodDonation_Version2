@@ -18,17 +18,12 @@
     <PackageReference Include="DotNetEnv" Version="3.1.1" />
     <PackageReference Include="Ardalis.Specification" Version="8.0.0" />
     <PackageReference Include="Ardalis.Specification.EntityFrameworkCore" Version="8.0.0" />
+    <PackageReference Include="RestSharp" Version="110.2.0" />
+
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MassTransitMessages\MassTransitMessages.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Application/" />
-    <Folder Include="Application/Consumers/" />
-    <Folder Include="Application/Features/" />
-    <Folder Include="Domain/Dto/" />
   </ItemGroup>
 
 </Project>
