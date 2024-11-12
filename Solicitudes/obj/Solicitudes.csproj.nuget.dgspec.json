@@ -1,0 +1,167 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/Solicitudes/Solicitudes.csproj": {}
+  },
+  "projects": {
+    "/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/MassTransitMessages/MassTransitMessages.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/MassTransitMessages/MassTransitMessages.csproj",
+        "projectName": "MassTransitMessages",
+        "projectPath": "/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/MassTransitMessages/MassTransitMessages.csproj",
+        "packagesPath": "/home/julian-andres-nino/.nuget/packages/",
+        "outputPath": "/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/MassTransitMessages/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/julian-andres-nino/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.110/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/Solicitudes/Solicitudes.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/Solicitudes/Solicitudes.csproj",
+        "projectName": "Solicitudes",
+        "projectPath": "/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/Solicitudes/Solicitudes.csproj",
+        "packagesPath": "/home/julian-andres-nino/.nuget/packages/",
+        "outputPath": "/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/Solicitudes/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/julian-andres-nino/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/MassTransitMessages/MassTransitMessages.csproj": {
+                "projectPath": "/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/MassTransitMessages/MassTransitMessages.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Ardalis.GuardClauses": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            },
+            "Ardalis.Specification": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Ardalis.Specification.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Carter": {
+              "target": "Package",
+              "version": "[8.2.1, )"
+            },
+            "DotNetEnv": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "MassTransit": {
+              "target": "Package",
+              "version": "[8.2.2, )"
+            },
+            "MassTransit.ActiveMQ": {
+              "target": "Package",
+              "version": "[8.2.2, )"
+            },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.1.0, )"
+            },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.6.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.110/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

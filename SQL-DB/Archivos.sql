@@ -1,0 +1,9 @@
+CREATE TABLE Archivo
+(
+    ArchivoId UNIQUEIDENTIFIER PRIMARY KEY,
+    Nombre NVARCHAR(255) NOT NULL,
+    Ruta NVARCHAR(512) NOT NULL,
+    TipoArchivoId INT NOT NULL,
+    Extension NVARCHAR(50) NULL,
+    FechaCreacion DATETIME NULL
+);
