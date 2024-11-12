@@ -370,3 +370,6 @@ appsettings.development.json
 .angular/cache
 .local-chromium/
 /package.json
+# Ignorar carpetas bin y obj
+bin/
+obj/
