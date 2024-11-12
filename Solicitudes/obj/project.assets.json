@@ -9290,32 +9290,34 @@
     ]
   },
   "packageFolders": {
-    "/home/julian-andres-nino/.nuget/packages/": {}
+    "C:\\Users\\Juan F\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/Solicitudes/Solicitudes.csproj",
+      "projectUniqueName": "D:\\MicroServicios\\BloodDonation_Version2\\Solicitudes\\Solicitudes.csproj",
       "projectName": "Solicitudes",
-      "projectPath": "/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/Solicitudes/Solicitudes.csproj",
-      "packagesPath": "/home/julian-andres-nino/.nuget/packages/",
-      "outputPath": "/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/Solicitudes/obj/",
+      "projectPath": "D:\\MicroServicios\\BloodDonation_Version2\\Solicitudes\\Solicitudes.csproj",
+      "packagesPath": "C:\\Users\\Juan F\\.nuget\\packages\\",
+      "outputPath": "D:\\MicroServicios\\BloodDonation_Version2\\Solicitudes\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/julian-andres-nino/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Juan F\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/MassTransitMessages/MassTransitMessages.csproj": {
-              "projectPath": "/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/MassTransitMessages/MassTransitMessages.csproj"
+            "D:\\MicroServicios\\BloodDonation_Version2\\MassTransitMessages\\MassTransitMessages.csproj": {
+              "projectPath": "D:\\MicroServicios\\BloodDonation_Version2\\MassTransitMessages\\MassTransitMessages.csproj"
             }
           }
         }
@@ -9324,6 +9326,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -9394,7 +9401,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.110/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.206/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

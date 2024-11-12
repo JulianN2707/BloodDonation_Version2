@@ -1,3 +1,3 @@
 ﻿<Project>
-  <Import Project="../build/DonacionSangre.props" />
+  <Import Project="..\build\DonacionSangre.props" />
 </Project>

@@ -7,30 +7,24 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Carter" Version="8.2.1" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.10" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.10" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
-    <PackageReference Include="Ardalis.GuardClauses" Version="4.5.0" />
-    <PackageReference Include="MassTransit" Version="8.2.2" />
-		<PackageReference Include="MassTransit.ActiveMQ" Version="8.2.2" />
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
-    <PackageReference Include="DotNetEnv" Version="3.1.1" />
-    <PackageReference Include="Ardalis.Specification" Version="8.0.0" />
+    <PackageReference Include="Carter" Version="8.1.0" />
+    <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
+    <PackageReference Include="MongoDB.Driver" Version="2.29.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+	<PackageReference Include="Ardalis.Specification" Version="8.0.0" />
+	<PackageReference Include="Ardalis.Specification.EntityFrameworkCore" Version="8.0.0" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.5">
+		<PrivateAssets>all</PrivateAssets>
+		<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	</PackageReference>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application/Consumers/" />
-    <Folder Include="Application/Features/Donante/Queries/" />
-    <Folder Include="Application/Features/Enfermero/" />
-    <Folder Include="Application/Features/Enfermero/Command/" />
-    <Folder Include="Application/Features/Enfermero/Queries/" />
-    <Folder Include="Domain/Dto/" />
-    <Folder Include="Domain/Entities/" />
-    <Folder Include="Infrastructure/Context/" />
-    <Folder Include="Infrastructure/Repositories/" />
-    <Folder Include="Infrastructure/Repositories/BloodDonationSpecification/" />
-    <Folder Include="Infrastructure/Repositories/SpecificationUnitOfWork/" />
+    <Folder Include="Application\Features\SolicitudDonacion\Queries\" />
+    <Folder Include="Infrastructure\MongoRepositories\ReservaMongoRepository\" />
   </ItemGroup>
 
 </Project>

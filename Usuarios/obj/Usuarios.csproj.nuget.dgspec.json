@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/Usuarios/Usuarios.csproj": {}
+    "D:\\MicroServicios\\BloodDonation_Version2\\Usuarios\\Usuarios.csproj": {}
   },
   "projects": {
-    "/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/Usuarios/Usuarios.csproj": {
+    "D:\\MicroServicios\\BloodDonation_Version2\\Usuarios\\Usuarios.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/Usuarios/Usuarios.csproj",
+        "projectUniqueName": "D:\\MicroServicios\\BloodDonation_Version2\\Usuarios\\Usuarios.csproj",
         "projectName": "Usuarios",
-        "projectPath": "/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/Usuarios/Usuarios.csproj",
-        "packagesPath": "/home/julian-andres-nino/.nuget/packages/",
-        "outputPath": "/home/julian-andres-nino/Escritorio/Microservicios/Entrega-2/Usuarios/obj/",
+        "projectPath": "D:\\MicroServicios\\BloodDonation_Version2\\Usuarios\\Usuarios.csproj",
+        "packagesPath": "C:\\Users\\Juan F\\.nuget\\packages\\",
+        "outputPath": "D:\\MicroServicios\\BloodDonation_Version2\\Usuarios\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/julian-andres-nino/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Juan F\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -32,6 +34,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -102,7 +109,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.110/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.206/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
