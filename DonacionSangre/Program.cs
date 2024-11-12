@@ -1,44 +1,70 @@
+using Carter;
+using DonacionSangre.Domain.Interfaces;
+using DonacionSangre.Domain.Interfaces.MongoRepository;
+using DonacionSangre.Domain.Interfaces.SqlServerRepository;
+using DonacionSangre.Domain.Services;
+using DonacionSangre.Infrastructure;
+using DonacionSangre.Infrastructure.MongoRepositories.ReservaDonacionMongoRepository;
+using DonacionSangre.Infrastructure.MongoRepositories.SolicitudDonacionMongoRepository;
+using DonacionSangre.Infrastructure.Repositories.MongoDbRepository;
+using DonacionSangre.Infrastructure.Services.NotificacionesAutomaticas;
+using DonacionSangre.Infrastructure.Services.Sincronizacion;
+using DonacionSangre.Infrastructure.SqlServerRepositories.Donante;
+using DonacionSangre.Infrastructure.SqlServerRepositories.Repository;
+using DonacionSangre.Infrastructure.SqlServerRepositories.Reserva;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// Configuración de servicios
+// Agregar SQL Server DbContext
+builder.Services.AddDbContext<SqlDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerConnection")));
+
+// Configuración de los Repositorios
+builder.Services.AddScoped<IDonanteRepository, DonanteRepository>();
+builder.Services.AddScoped<IReservaRepository, ReservaRepository>();
+builder.Services.AddScoped<INotificacionAutomaticaService, NotificacionAutomaticaService>();
+
+// Configuración del Repositorio de MongoDB
+builder.Services.AddSingleton<IReservaDonacionMongoRepository, ReservaDonacionMongoRepository>();
+builder.Services.AddSingleton<IDonanteMongoRepository, DonanteMongoRepository>();
+builder.Services.AddSingleton<ISolicitudDonacionMongoRepository, SolicitudDonacionMongoRepository>();
+builder.Services.AddSingleton<IPersonaMongoRepository, PersonaMongoRepository>();
+builder.Services.AddSingleton<ICentroSaludMongoRepository, CentroSaludMongoRepository>();
+builder.Services.AddSingleton<IReservaDonacionService, ReservaDonacionService>();
+
+// Servicio de Sincronización
+builder.Services.AddScoped<SynchronizationService>();
+builder.Services.AddCarter();
+
+// Agregar MediatR para CQRS
+builder.Services.AddMediatR(c => c.RegisterServicesFromAssembly(typeof(Program).Assembly));
+
+// Agregar Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Agregar controladores y otros servicios MVC si es necesario
+builder.Services.AddControllers();
+
+//Repositorio SQL server generico 
+builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configurar middleware de la aplicación
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
+    app.UseDeveloperExceptionPage();
+    app.UseSwagger();  // Habilita Swagger para generar los documentos
     app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
-
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+app.UseRouting();
+app.UseAuthorization();
+app.MapCarter();
+app.MapControllers();
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
