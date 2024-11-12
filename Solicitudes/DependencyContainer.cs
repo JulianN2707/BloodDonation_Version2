@@ -4,6 +4,7 @@ using Carter;
 using MediatR;
 using Solicitudes.Infrastructure.Context;
 using Solicitudes.Infrastructure.Repositories.SpecificationUnitOfWork;
+using Solicitudes.Infrastructure.Services.NotificacionesService;
 
 namespace Solicitudes;
 
@@ -17,6 +18,7 @@ public static class DependencyContainer
             (typeof(ISolicitudesSpecificationUnitOfWork), typeof(SolicitudesSpecificationUnitOfWork));
 
         services.AddMediatR(Assembly.GetExecutingAssembly());
+        services.AddSingleton<IEmailService, EMailService>();
         services.AddCarter();
         return services;
 
