@@ -1,6 +1,6 @@
 using System;
 
-namespace DonacionSangre.Domain_.Common;
+namespace DonacionSangre.Domain.Common;
 
 public class AppSettings
 {
