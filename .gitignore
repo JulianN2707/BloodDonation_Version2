@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+# Ignorar archivos y carpetas generadas
+bin/
+obj/
+
+>>>>>>> 977b99e09e16c5cf0b3724b9fc3ac58a24a570ce
 # User-specific files
 *.rsuser
 *.suo
@@ -371,5 +378,10 @@ appsettings.development.json
 .local-chromium/
 /package.json
 # Ignorar carpetas bin y obj
+<<<<<<< HEAD
 **/bin/
 **/obj/
+=======
+bin/
+obj/
+>>>>>>> 977b99e09e16c5cf0b3724b9fc3ac58a24a570ce
