@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Solicitud de Donación de Sangre</title>
+    <style>
+        @media only screen and (max-width: 480px) {
+            .contenedor-logo {
+                width: 100% !important;
+                text-align: left !important;
+            }
+
+            .logo1,
+            .logo2 {
+                max-height: 50px !important;
+            }
+        }
+
+        .div-back {
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body style="
+      margin: 0px;
+      background-color: #ffffff;
+      font-family: 'Work Sans', sans-serif;
+      color: #3d4b58;
+      line-height: 25px;
+      font-size: 12px;
+    ">
+    <div style="height: 100px; background: #d9534f"></div>
+    <div class="div-back"
+         style="
+         background: linear-gradient(0deg, #fff 80%, #d9534f 80%, #d9534f 100%);
+        height: 30%;
+        margin: 0px auto;
+        padding: 2%;
+      ">
+        <div class="div-content"
+             style="
+          border-radius: 10px;
+          background-color: white;
+          width: 55%;
+          margin: 5% auto;
+          padding: 8% 10%;
+        ">
+            <div class="div-logo" style="margin-bottom: 40px">
+                <div class="three-col" style="font-size: 0">
+                    <div class="column" style="width: 50%; display: inline-block;">
+                        <img class="logo1" src="Logo1.png" alt="Donación de Sangre" style="max-height: 67px;" />
+                    </div>
+                    <div class="column" style="width: 50%; display: inline-block; text-align: right;">
+                        <img class="logo2" src="Logo2.png" alt="Logo" style="max-height: 67px;" />
+                    </div>
+                </div>
+            </div>
+            <div class="div-to" style="color: #004884; font-size: 16px; font-weight: bold">
+                <p style="margin: 0">Señor(a): ##NOMBRE_DONANTE##</p>
+            </div>
+            <br />
+            <p>Ciudad: ##CIUDAD##</p>
+            <br />
+            <div class="div-message">
+                <p style="font-size: 14px; line-height: 140%;">
+                    Le solicitamos que se presente a donar a la brevedad posible. Su participación es vital para salvar vidas,
+                    y en este momento, necesitamos su ayuda de manera urgente.
+                </p>
+                <p style="font-size: 14px; line-height: 140%;">
+                    En caso de necesitar asistencia o más información, no dude en contactar a nuestro equipo.
+                </p>
+                <p style="font-size: 14px; line-height: 140%;">
+                    Agradecemos profundamente su generosidad.
+                </p>
+            </div>
+            <br />
+            <div class="div-footer" style="text-align: center;">
+                <hr style="width: 40%; border-top: 1px solid #d9534f;" />
+                <p style="margin: 0">
+                    <a href="https://www.donaciondesangre.gov" style="color: #d9534f;">www.donaciondesangre.gov</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
