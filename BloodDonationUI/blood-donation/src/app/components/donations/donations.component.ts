@@ -1,21 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { BloodDonationService } from '../../services/blood-donation.service';
 import { CommonModule } from '@angular/common';
+import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-donations',
   standalone: true,
-  imports: [CommonModule],  // Elimina HttpClientModule de aquí
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './donations.component.html',
   styleUrls: ['./donations.component.css']
 })
 export class DonationsComponent implements OnInit {
+
+  private readonly fb = inject(FormBuilder);
   donations: any[] = [];
+  formulario!: any;
 
   constructor(private bloodDonationService: BloodDonationService) {}
 
   ngOnInit(): void {
-    //this.loadDonations();
+    this.formulario = this.inicializarFormulario();
+  }
+
+  inicializarFormulario(): FormGroup {
+    return this.fb.group({
+      centroSaludId: ['', Validators.required],
+      grupoSanguineo: ['', Validators.required],
+      rh: ['', Validators.required]
+    });
+  }
+
+  submitDonation(): void {
+    if (this.formulario.valid) {
+      console.log("FORMULARIO: ", this.formulario);
+
+      const donationData = this.formulario.value;
+      this.addDonation(donationData);
+    } else {
+      console.error("Formulario inválido");
+    }
   }
 
   loadDonations(): void {
@@ -30,14 +53,13 @@ export class DonationsComponent implements OnInit {
   }
 
   addDonation(donation: any): void {
-    this.bloodDonationService.addDonation(donation).subscribe(
-      (response) => {
+    this.bloodDonationService.crearSolicitudDonacion(donation).subscribe({
+      next : (response : any) => {
         console.log('Donación agregada:', response);
-        this.loadDonations(); // Recargamos la lista después de agregar
       },
-      (error) => {
-        console.error('Error adding donation:', error);
+      error : (error : any) => {
+        console.error('Error agregando la solicitud de donacion:', error);
       }
-    );
+    })
   }
 }
