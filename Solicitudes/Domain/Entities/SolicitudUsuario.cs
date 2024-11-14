@@ -5,6 +5,7 @@ namespace Solicitudes.Domain.Entities;
 public class SolicitudUsuario
 {
     public Guid SolicitudUsuarioId { get; set; }
+    public Guid? PersonaMunicipioDireccionId { get; set; }
     public string? PersonaNumeroDocumento { get; set; }
     public DateTime? PersonaFechaExpedicionDocumento { get; set; }
     public string? PersonaPrimerApellido { get; set; }
@@ -12,7 +13,6 @@ public class SolicitudUsuario
     public string? PersonaSegundoApellido { get; set; }
     public string? PersonaSegundoNombre { get; set; }
     public string? PersonaCorreoElectronico { get; set; }
-    public int? PersonaMunicipioDireccionId { get; set; }
     public string? PersonaCelular { get; set; }
     public string? PersonaDireccion { get; set; }
     public int EstadoSolicitudUsuarioId { get; set; }
@@ -34,7 +34,7 @@ public class SolicitudUsuario
     int tipoCargoPersonaId, 
     string? personaCelular = null, 
     string? personaDireccion = null, 
-    int? personaMunicipioDireccionId = null)
+    Guid? personaMunicipioDireccionId = null)
 {
     return new SolicitudUsuario
     {
