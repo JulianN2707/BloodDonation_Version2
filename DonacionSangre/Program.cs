@@ -26,6 +26,14 @@ builder.Services.AddScoped<IDonanteRepository, DonanteRepository>();
 builder.Services.AddScoped<IReservaRepository, ReservaRepository>();
 builder.Services.AddScoped<INotificacionAutomaticaService, NotificacionAutomaticaService>();
 
+//CORS
+builder.Services.AddCors(options =>
+options.AddDefaultPolicy(config =>
+config
+.AllowAnyHeader()
+.AllowAnyMethod()
+.AllowAnyOrigin()));
+
 // Configuración del Repositorio de MongoDB
 builder.Services.AddSingleton<IReservaDonacionMongoRepository, ReservaDonacionMongoRepository>();
 builder.Services.AddSingleton<IDonanteMongoRepository, DonanteMongoRepository>();
@@ -60,6 +68,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();  // Habilita Swagger para generar los documentos
     app.UseSwaggerUI();
 }
+
+app.UseCors();
 
 app.UseHttpsRedirection();
 app.UseRouting();
