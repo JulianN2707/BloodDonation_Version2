@@ -15,11 +15,16 @@ export class DonationsComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
   donations: any[] = [];
   formulario!: any;
+  formularioReserva!:any;
+  minDate!: string;
 
   constructor(private bloodDonationService: BloodDonationService) {}
 
   ngOnInit(): void {
+    const today = new Date();
+    this.minDate = today.toISOString().split('T')[0]; // Formato AAAA-MM-DD
     this.formulario = this.inicializarFormulario();
+    this.formularioReserva = this.inicializarFormularioReserva();
   }
 
   inicializarFormulario(): FormGroup {
@@ -27,6 +32,12 @@ export class DonationsComponent implements OnInit {
       centroSaludId: ['', Validators.required],
       grupoSanguineo: ['', Validators.required],
       rh: ['', Validators.required]
+    });
+  }
+
+  inicializarFormularioReserva(): FormGroup{
+    return this.fb.group({
+      fechaReserva: ['', Validators.required]
     });
   }
 
@@ -41,6 +52,19 @@ export class DonationsComponent implements OnInit {
     }
   }
 
+  submitReserva(): void {
+    if (this.formularioReserva.valid) {
+      const requestReservaDonacion = {
+        personaId : "3EB55A17-2AFD-49CC-9D75-08DCE14DE84F",
+        fechaDonacion : this.formularioReserva.get('fechaReserva')?.value
+      }
+      console.log(requestReservaDonacion);
+      this.crearReservaDonacion(requestReservaDonacion);
+    } else {
+      console.error("Formulario inválido");
+    }
+  }
+
   loadDonations(): void {
     this.bloodDonationService.getDonations().subscribe(
       (data) => {
@@ -48,6 +72,18 @@ export class DonationsComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching donations:', error);
+      }
+    );
+  }
+
+  
+  crearReservaDonacion(donation: any): void {
+    this.bloodDonationService.crearReservaDonacion(donation).subscribe(
+      (response) => {
+        console.log('reserva agregada:', response);
+      },
+      (error) => {
+        console.error('Error adding donation:', error);
       }
     );
   }

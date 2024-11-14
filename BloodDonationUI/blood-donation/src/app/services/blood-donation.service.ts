@@ -13,6 +13,10 @@ export class BloodDonationService {
   getDonations(): Observable<any> {
     return this.http.get(`${this.BaseUrl}/donations`);
   }
+  
+  crearReservaDonacion(request : any): Observable<any> {
+    return this.http.get(`${this.BaseUrl}/crear-reserva-donacion`);
+  }
 
   crearSolicitudDonacion(donation: any): Observable<any> {
     return from(this.http.post<any>(`${this.BaseUrl}/crear-solicitud-donacion`, donation));
