@@ -85,6 +85,7 @@ if (providerMQ.Equals("activeMQ"))
                     cfg.UseInMemoryOutbox(context);
                 });
             });
+            cfg.EnableArtemisCompatibility();
 
         });
     });

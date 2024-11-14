@@ -6,7 +6,7 @@ public class Usuario
 {
     public Guid UsuarioId { get; set; }
 
-    public int PersonaId { get; set; }
+    public Guid PersonaId { get; set; }
 
     public DateTime FechaRegistro { get; set; }
 
