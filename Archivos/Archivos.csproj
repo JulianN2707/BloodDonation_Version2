@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include=".env" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Carter" Version="8.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.10" />
@@ -21,10 +25,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application/" />
-    <Folder Include="Application/Consumers/" />
     <Folder Include="Application/Features/" />
     <Folder Include="Domain/Dto/" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MassTransitMessages\MassTransitMessages.csproj" />
   </ItemGroup>
 
 </Project>

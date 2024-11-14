@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    
+    <PackageReference Include="MassTransit" Version="8.2.2" />
+		<PackageReference Include="MassTransit.ActiveMQ" Version="8.2.2" />
+
+  </ItemGroup>
+
+
 </Project>
