@@ -1,6 +1,10 @@
 using Archivos;
+using Archivos.Application.Consumers;
 using Archivos.Domain.Common;
+using Carter;
 using DotNetEnv;
+using MassTransit;
+using MassTransitMessages.Formatter;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,7 +22,7 @@ var configuration = builder.Configuration
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddEnvironmentVariables()
     .Build();
-var appName = configuration.GetValue<string>("AppName") ?? "Persona";
+var appName = configuration.GetValue<string>("AppName") ?? "Archivos";
 
 builder.Services.Configure<AppSettings>(configuration.GetSection(AppSettings.SectionKey));
 
@@ -49,53 +53,50 @@ builder.Services.AddCors(options =>
                .WithExposedHeaders("X-Pagination");
     });
 });
-// #region configuration MQ
-// var providerMQ = configuration.GetValue<string>("MQ_Provider");
+#region configuration MQ
+var providerMQ = configuration.GetValue<string>("MQ_Provider");
 
-// if (providerMQ.Equals("activeMQ"))
-// {
-//     #region active config-consumer
-//     builder.Services.AddMassTransit(x =>
-//     {
-//         x.AddConsumer<CrearPersonaJuridicaConsumer>();
+if (providerMQ.Equals("activeMQ"))
+{
+    #region active config-consumer
+    builder.Services.AddMassTransit(x =>
+    {
+        x.AddConsumer<CrearArchivosConsumer>();
 
-//         x.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(prefix: $"{environment}", includeNamespace: false));
+        x.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(prefix: $"{environment}", includeNamespace: false));
 
-//         x.UsingActiveMq((context, cfg) =>
-//         {
-//             cfg.Host(configuration.GetValue<string>("MQ_Active_Host")!, configuration.GetValue<int>("MQ_Active_Port"), host =>
-//             {
-//                 host.Username(configuration.GetValue<string>("MQ_Active_Username")!);
-//                 host.Password(configuration.GetValue<string>("MQ_Active_Password")!);
-//             });
+        x.UsingActiveMq((context, cfg) =>
+        {
+            cfg.Host(configuration.GetValue<string>("MQ_Active_Host")!, configuration.GetValue<int>("MQ_Active_Port"), host =>
+            {
+                host.Username(configuration.GetValue<string>("MQ_Active_Username")!);
+                host.Password(configuration.GetValue<string>("MQ_Active_Password")!);
+            });
             
-//             cfg.MessageTopology.SetEntityNameFormatter(new MessageNameFormatter());
+            cfg.MessageTopology.SetEntityNameFormatter(new MessageNameFormatter());
 
-//             cfg.ReceiveEndpoint($"{environment}-crear-persona-juridica", x =>
-//             {
-//                 x.ConfigureConsumeTopology = false;
-//                 x.ConfigureConsumer<CrearPersonaJuridicaConsumer>(context, cfg =>
-//                 {
-//                     cfg.UseDelayedRedelivery(r => r.Intervals(TimeSpan.FromMinutes(5), TimeSpan.FromMinutes(15), TimeSpan.FromMinutes(30)));
-//                     cfg.UseMessageRetry(r => r.Interval(5,TimeSpan.FromMinutes(4)));
-//                     cfg.UseInMemoryOutbox(context);
-//                 });
-//             });
+            cfg.ReceiveEndpoint($"crear-archivos", x =>
+            {
+                x.ConfigureConsumeTopology = false;
+                x.ConfigureConsumer<CrearArchivosConsumer>(context, cfg =>
+                {
+                    cfg.UseDelayedRedelivery(r => r.Intervals(TimeSpan.FromMinutes(5), TimeSpan.FromMinutes(15), TimeSpan.FromMinutes(30)));
+                    cfg.UseMessageRetry(r => r.Interval(5,TimeSpan.FromMinutes(4)));
+                    cfg.UseInMemoryOutbox(context);
+                });
+            });
 
-//         });
-//     });
-//     #endregion
-// }
-// #endregion
+        });
+    });
+    #endregion
+}
+#endregion
 
 var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI(setupAction =>
 {
-    setupAction.SwaggerEndpoint(
-        "/swagger/openAPISpecification/swagger.json", "Transversales Personas API");
-
-    setupAction.DocumentTitle = "Sisfv.Transversales.Personas.API";
+    setupAction.DocumentTitle = "ARCHIVOS API";
     setupAction.DefaultModelsExpandDepth(-1);
     setupAction.DisplayOperationId();
     setupAction.DisplayRequestDuration();
@@ -103,6 +104,7 @@ app.UseSwaggerUI(setupAction =>
 
 app.UseHealthChecks("/healthz");
 app.UseRouting();
+app.MapCarter();
 app.UseCors("AllowAnyOrigin");
 app.Run();
 
