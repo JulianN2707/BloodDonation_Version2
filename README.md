@@ -42,6 +42,10 @@ A continuación se muestra el diagrama ER del sistema, que incluye las entidades
 
 ![Diagrama ER](DiagramaBloodApis.png)
 
+## Diagrama Apis y Bases de datos segunda entrega
+
+![Diagrama ER](BloodDonationV2.png)
+
 ## Instalación y Configuración
 
 ### Requisitos Previos
