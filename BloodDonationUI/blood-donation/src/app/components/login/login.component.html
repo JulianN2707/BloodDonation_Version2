@@ -1,1 +1,27 @@
-<p>login works!</p>
+<body>
+  <div class="login-container">
+    <form [formGroup]="formulario" (ngSubmit)="submitDonation()" class="login-form">
+      <h2>Iniciar sesión</h2>
+      <div class="input-group">
+        <label for="usuario">Usuario</label>
+        <input type="text" class="form-control" id="usuario" name="usuario" formControlName="usuario" placeholder="Ingresa tu usuario" required>
+        <div *ngIf="formulario.get('usuario')?.invalid && formulario.get('usuario')?.touched" class="error-message">
+          El usuario es obligatorio.
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="contrasena">Contraseña</label>
+        <input type="password" class="form-control" id="contrasena" name="contrasena" formControlName="contrasena" placeholder="Ingresa tu contraseña" required>
+        <div *ngIf="formulario.get('contrasena')?.invalid && formulario.get('contrasena')?.touched" class="error-message">
+          La contraseña es obligatoria.
+        </div>
+      </div>
+      <button type="submit" class="login-btn" [disabled]="formulario.invalid">Iniciar sesión</button>
+      <div class="back-link">
+        <a href="#" (click)="volver()">Volver</a>
+      </div>
+    </form>
+  </div>
+</body>
+
+
