@@ -3,6 +3,7 @@ using MassTransit;
 using MassTransitMessages.Messages;
 using MediatR;
 using Solicitudes.Domain.Entities;
+using Solicitudes.Domain.ValueObjects;
 using Solicitudes.Infrastructure.Repositories.SpecificationUnitOfWork;
 
 namespace Solicitudes.Application.Features.SolicitudDonante.Command.CrearDonante;
@@ -34,17 +35,19 @@ public class CrearDonanteCommandHandler : IRequestHandler<CrearDonanteCommand, C
         await endpoint.Send(message);
         return new CrearDonanteResponse {SolicitudId=solicitudUsuario.SolicitudUsuarioId};
     }
-    public async Task<SolicitudUsuario> CrearSolicitud(CrearDonanteCommand request){
-        var solicitud = new SolicitudUsuario();
-        solicitud = solicitud.CrearSolicitud(request.NumeroDocumento,request.FechaExpedicionDocumento,request.PrimerApellido,
-        request.PrimerNombre,request.SegundoApellido,request.SegundoNombre,request.CorreoElectronico,1,request.TipoPersonaId,request.Celular,
+    public async Task<SolicitudUsuario> CrearSolicitud(CrearDonanteCommand request)
+    {
+        var estadoUsuarioPendiente = new Guid("7C3E4D1F-6D59-431B-89F1-2E7F5BDE9A8D");
+        var solicitud = SolicitudUsuario.CrearSolicitud(request.NumeroDocumento, TipoSangre.Crear(request.GrupoSanguineo, request.FactorRh), request.FechaExpedicionDocumento,request.PrimerApellido,
+        request.PrimerNombre,request.SegundoApellido,request.SegundoNombre,request.CorreoElectronico, estadoUsuarioPendiente, request.TipoPersonaId,request.Celular,
         request.Direccion,request.MunicipioDireccionId);
         await _solicitudesSpecificationUnitOfWork._solicitudRepository.AddAsync(solicitud);
         await _solicitudesSpecificationUnitOfWork.SaveChangesAsync();
         return solicitud;
          
     }
-     private async Task<List<ArchivoDtoInfo>> RetornarArchivos(CrearDonanteCommand request)
+
+    private async Task<List<ArchivoDtoInfo>> RetornarArchivos(CrearDonanteCommand request)
     {
         // Crear una lista para almacenar la información de cada archivo
         List<ArchivoDtoInfo> archivosInfo = new List<ArchivoDtoInfo>();

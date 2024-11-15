@@ -21,8 +21,6 @@ public static class DependencyContainer
         services.AddMediatR(Assembly.GetExecutingAssembly());
         services.AddCarter();
         return services;
-
-
     }
 
 }

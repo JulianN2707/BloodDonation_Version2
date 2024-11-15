@@ -17,6 +17,7 @@ public class CrearDonanteCommand : IRequest<CrearDonanteResponse>
     public string? Direccion { get; set; }
     public Guid? MunicipioDireccionId { get; set; }
     public Guid TipoPersonaId { get; set; }
+    public required string FactorRh { get; set; }
+    public required string GrupoSanguineo { get; set; }
     public List<CrearArchivoDto> Archivos { get; set; }
-
 }

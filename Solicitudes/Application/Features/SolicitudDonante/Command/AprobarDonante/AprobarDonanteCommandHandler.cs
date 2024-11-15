@@ -25,7 +25,8 @@ public class AprobarDonanteCommandHandler : IRequestHandler<AprobarDonanteComman
         var solicitud = await _solicitudesSpecificationUnitOfWork._solicitudRepository.FirstOrDefaultAsync(
             new GenericSpecification<SolicitudUsuario>(x=>x.SolicitudUsuarioId == request.SolicitudUsuarioId)
         );
-        solicitud.EstadoSolicitudUsuarioId=1;
+        var estadoSolicitudUsuarioAprobada = new Guid("2D4B6A22-083D-4E9C-A3AE-8D1C0DBD51BC");
+        solicitud.EstadoSolicitudUsuarioId = estadoSolicitudUsuarioAprobada;
         await _solicitudesSpecificationUnitOfWork._solicitudRepository.UpdateAsync(solicitud);
         await _solicitudesSpecificationUnitOfWork.SaveChangesAsync();
 

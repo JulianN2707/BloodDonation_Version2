@@ -10,4 +10,5 @@ public class Archivo
     public Guid TipoArchivoId { get; set; }
     public string? Extension { get; set; }
     public DateTime? FechaCreacion { get; set; }
+    public virtual TipoArchivo TipoArchivo { get; set; } = null!;
 }

@@ -1,4 +1,4 @@
-using System;
+using Solicitudes.Domain.ValueObjects;
 
 namespace Solicitudes.Domain.Entities;
 
@@ -6,6 +6,9 @@ public class SolicitudUsuario
 {
     public Guid SolicitudUsuarioId { get; set; }
     public Guid? PersonaMunicipioDireccionId { get; set; }
+    public Guid TipoPersonaId { get; set; }
+    public Guid EstadoSolicitudUsuarioId { get; set; }
+    public required TipoSangre TipoSangre {  get; set; }
     public string? PersonaNumeroDocumento { get; set; }
     public DateTime? PersonaFechaExpedicionDocumento { get; set; }
     public string? PersonaPrimerApellido { get; set; }
@@ -15,22 +18,22 @@ public class SolicitudUsuario
     public string? PersonaCorreoElectronico { get; set; }
     public string? PersonaCelular { get; set; }
     public string? PersonaDireccion { get; set; }
-    public int EstadoSolicitudUsuarioId { get; set; }
-    public Guid TipoPersonaId { get; set; }
     public DateTime FechaCreacion { get; set; }
     public DateTime? FechaAprobacion { get; set; }
     public string? MotivoRechazo { get; set; }
     public DateTime? FechaRechazo { get; set; }
+    public virtual EstadoSolicitudUsuario EstadoSolicitudUsuario { get; set; } = null!;
 
-    public SolicitudUsuario CrearSolicitud(
-    string? personaNumeroDocumento, 
+    public static SolicitudUsuario CrearSolicitud(
+    string? personaNumeroDocumento,
+    TipoSangre tipoSangre,
     DateTime? personaFechaExpedicionDocumento,
     string? personaPrimerApellido, 
     string? personaPrimerNombre, 
     string? personaSegundoApellido, 
     string? personaSegundoNombre,
     string? personaCorreoElectronico, 
-    int estadoSolicitudUsuarioId, 
+    Guid estadoSolicitudUsuarioId, 
     Guid tipoPersonaId, 
     string? personaCelular = null, 
     string? personaDireccion = null, 
@@ -39,6 +42,7 @@ public class SolicitudUsuario
     return new SolicitudUsuario
     {
         PersonaNumeroDocumento = personaNumeroDocumento,
+        TipoSangre = tipoSangre,
         PersonaFechaExpedicionDocumento = personaFechaExpedicionDocumento,
         PersonaPrimerApellido = personaPrimerApellido,
         PersonaPrimerNombre = personaPrimerNombre,
