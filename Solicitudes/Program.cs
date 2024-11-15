@@ -87,7 +87,7 @@ if (providerMQ.Equals("activeMQ"))
                 e.ConfigureConsumeTopology = false;
                 e.UseMessageRetry(r => r.Interval(5,TimeSpan.FromMinutes(4)));
                 e.UseDelayedRedelivery(r => r.Intervals(TimeSpan.FromMinutes(5), TimeSpan.FromMinutes(15), TimeSpan.FromMinutes(30)));
-                e.ConfigureSaga<SolicitudCrearDonanteStateInstance>(activeContext);           
+                e.ConfigureSaga<SolicitudAprobarDonanteStateInstance>(activeContext);           
                 
             });
             activeConfig.ReceiveEndpoint($"saga-crear-donante", e =>
@@ -95,7 +95,7 @@ if (providerMQ.Equals("activeMQ"))
                 e.ConfigureConsumeTopology = false;
                 e.UseMessageRetry(r => r.Interval(5,TimeSpan.FromMinutes(4)));
                 e.UseDelayedRedelivery(r => r.Intervals(TimeSpan.FromMinutes(5), TimeSpan.FromMinutes(15), TimeSpan.FromMinutes(30)));
-                e.ConfigureSaga<SolicitudAprobarDonanteStateInstance>(activeContext);
+                e.ConfigureSaga<SolicitudCrearDonanteStateInstance>(activeContext);
             });
 
             activeConfig.ReceiveEndpoint($"obtener-informacion-solicitud", x =>

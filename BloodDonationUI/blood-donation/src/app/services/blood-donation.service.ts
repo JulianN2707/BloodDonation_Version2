@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { from, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BloodDonationService {
-  private BaseUrlDonacion = 'https://localhost:7191/api';
-  private BaseUrlSolicitud = 'https://localhost:5021/api';
-  private BaseUrlPersona = 'https://localhost:5169/api';
+  private BaseUrlDonacion = 'https://localhost:7053';
+  private BaseUrlSolicitud = 'http://localhost:7056';
+  private BaseUrlPersona = 'https://localhost:7049';
 
   constructor(private http: HttpClient) {}
 
@@ -16,8 +16,17 @@ export class BloodDonationService {
     return this.http.get(`${this.BaseUrlDonacion}/donations`);
   }
 
-  crearDonante(request : any): Observable<any> {
-    return this.http.post(`${this.BaseUrlSolicitud}/crear-solicitud-donante`, request);
+  crearDonante(request: FormData): Observable<any> {
+    const headers = new HttpHeaders();
+    return this.http.post<File>(`${this.BaseUrlSolicitud}/crear-solicitud-donante`, request,{headers});
+  }
+
+  obtenerSolicitudesDonante(): Observable<any> {
+    return this.http.get(`${this.BaseUrlSolicitud}/obtener-solicitudesdonante`);
+  }
+
+  aprobarSolicitudDonante(request : any): Observable<any> {
+    return this.http.post(`${this.BaseUrlSolicitud}/aprobar-donante`, request);
   }
   
   crearReservaDonacion(request : any): Observable<any> {

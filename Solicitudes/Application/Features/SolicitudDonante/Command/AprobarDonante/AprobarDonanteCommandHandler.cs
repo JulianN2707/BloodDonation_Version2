@@ -39,7 +39,7 @@ public class AprobarDonanteCommandHandler : IRequestHandler<AprobarDonanteComman
             InformacionCorreo = informacionCorreos,
             SagaQueueName = $"saga-aprobar-donante"
         };
-        var endpoint = await _massTransitService.GetSendEndpoint(new Uri($"queue:-saga-aprobar-donante"));
+        var endpoint = await _massTransitService.GetSendEndpoint(new Uri($"queue:saga-aprobar-donante"));
         await endpoint.Send(message);
         return true;
     }
