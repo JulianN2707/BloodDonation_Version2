@@ -18,14 +18,14 @@ public class CrearPersonaMessage{
     public string? CorreoElectronico { get; set; }
     public string? Celular { get; set; }
     public string? Direccion { get; set; }
-    public int? MunicipioDireccionId { get; set; }
+    public Guid? MunicipioDireccionId { get; set; }
     public DateTime FechaExpedicionDocumento { get; set; }
     public string SagaQueueName { get; set; } = string.Empty;
 }
 public class RollbackCrearPersonaMessage 
 {
     public Guid CorrelationId { get; set; }
-    public int PersonaId { get; set; }
+    public Guid PersonaId { get; set; }
     public Guid SolicitudUsuarioId { get; set; }
 }
 public class SolicitudCrearDonanteMessage
@@ -87,7 +87,7 @@ public record struct ArchivoDtoInfo
     public byte[] ArchivoBytes { get; init; }
     public string NombreArchivo { get; init; }
     public string TipoArchivo { get; init; }
-    public int TipoArchivoId { get; init; }
+    public Guid TipoArchivoId { get; init; }
 }
 public class CargaArchivoDto
 {

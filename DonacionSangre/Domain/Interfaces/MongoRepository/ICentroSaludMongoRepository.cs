@@ -1,5 +1,4 @@
 ﻿using DonacionSangre.Domain.Entities;
-using EDonante = DonacionSangre.Domain.Entities.Test.Donante;
 
 namespace DonacionSangre.Domain.Interfaces.MongoRepository
 {

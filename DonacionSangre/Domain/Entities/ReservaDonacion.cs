@@ -1,7 +1,6 @@
 ﻿using DonacionSangre.Domain.ValueObjects;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
-using DonacionSangre.Domain.Interfaces.MongoRepository;
 
 namespace DonacionSangre.Domain.Entities
 {
@@ -13,7 +12,6 @@ namespace DonacionSangre.Domain.Entities
         public Guid ReservaDonacionId { get; private set; }
         public DateTime FechaReserva { get; private set; }
         public Guid PersonaId { get; private set; }
-        public virtual Persona Persona { get; private set; } = null!;
         public EstadoReserva EstadoReserva { get; private set; } 
         public Guid SolicitudDonacionId { get; private set; }
         public virtual SolicitudDonacion SolicitudDonacion { get; set; } = null!;

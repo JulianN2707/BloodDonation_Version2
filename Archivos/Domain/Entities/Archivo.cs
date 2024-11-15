@@ -7,7 +7,7 @@ public class Archivo
     public Guid ArchivoId { get; set; }
     public string Nombre { get; set; } = string.Empty;
     public string Ruta { get; set; } = string.Empty;
-    public int TipoArchivoId { get; set; }
+    public Guid TipoArchivoId { get; set; }
     public string? Extension { get; set; }
     public DateTime? FechaCreacion { get; set; }
 }
