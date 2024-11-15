@@ -2,11 +2,12 @@ import { Component, OnInit, inject } from '@angular/core';
 import { BloodDonationService } from '../../services/blood-donation.service';
 import { CommonModule } from '@angular/common';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-donations',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule,RouterModule],
   templateUrl: './donations.component.html',
   styleUrls: ['./donations.component.css']
 })
@@ -76,7 +77,7 @@ export class DonationsComponent implements OnInit {
     );
   }
 
-  
+
   crearReservaDonacion(donation: any): void {
     this.bloodDonationService.crearReservaDonacion(donation).subscribe(
       (response) => {
