@@ -7,7 +7,7 @@ namespace Solicitudes.Application.Features.SolicitudDonante.Queries.ObtenerSolic
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapGet("/v1/obtener-solicitudesdonante", async (ISender sender) =>
+            app.MapGet("/obtener-solicitudesdonante", async (ISender sender) =>
             {
                 var result = await sender.Send(new ObtenerSolicitudesDonanteQuery());
                 return Results.Ok(result);

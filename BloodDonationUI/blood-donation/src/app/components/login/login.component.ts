@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit{
     console.log("CREDENCIALES: ", credenciales);
     if(credenciales.usuario == "enfermeranikita@gmail.com" && credenciales.contrasena == "Colombia2024."){
       console.log("Inicio enfermero");
-      this.router.navigate(['/create-usuario']);
+      this.router.navigate(['/registro-donacion']);
     }
     else if(credenciales.usuario == "solicitante@gmail.com" && credenciales.contrasena == "Colombia2024."){
       console.log("Inicio solicitante");

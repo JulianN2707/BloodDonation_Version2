@@ -1,0 +1,21 @@
+/* Asegurarse de que el campo de entrada y el botón tengan el mismo ancho */
+#appointment .form-group {
+  margin-bottom: 15px;
+}
+
+/* Asegurar que tanto el campo como el botón usen el 100% de ancho */
+#appointment .form-control {
+  width: 100%;
+}
+
+/* Estilo adicional para el botón */
+#appointment .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+#appointment .error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
