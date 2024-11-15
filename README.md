@@ -48,7 +48,7 @@ A continuación se muestra el diagrama ER del sistema, que incluye las entidades
 
 ## Link de video explicativo
 
-[Video explicativo en Google Drive](https://drive.google.com/file/d/14qMPHiIEc0VqOaYUGYfJuwdCTKf5WOEj/view?usp=drive_link)
+[Video explicativo - Google Drive](https://drive.google.com/file/d/14qMPHiIEc0VqOaYUGYfJuwdCTKf5WOEj/view?usp=drive_link)
 
 ## Instalación y Configuración
 
