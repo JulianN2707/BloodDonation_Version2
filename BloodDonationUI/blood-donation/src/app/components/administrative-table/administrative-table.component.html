@@ -2,7 +2,8 @@
 <table class="table align-middle mb-0 bg-white">
   <thead class="bg-light">
     <tr>
-      <th>Name</th>
+      <th>Nombre</th>
+      <th>Correo</th>
       <th>Tipo Persona</th>
       <th>Estado</th>
       <th>Municipio</th>
@@ -13,30 +14,35 @@
     <tr *ngFor="let person of people">
       <td>
         <div class="d-flex align-items-center">
-          <img
-            [src]="person.imageUrl"
-            alt=""
-            style="width: 45px; height: 45px"
-            class="rounded-circle"
-          />
           <div class="ms-3">
             <p class="fw-bold mb-1">{{ person.name }}</p>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="d-flex align-items-center">
+          <div class="ms-3">
             <p class="text-muted mb-0">{{ person.email }}</p>
           </div>
         </div>
       </td>
       <td>
         <p class="fw-normal mb-1">{{ person.title }}</p>
-        <p class="text-muted mb-0">{{ person.department }}</p>
       </td>
       <td>
         <span class="badge" [ngClass]="{
-          'badge-success': person.status === 'Active',
-          'badge-primary': person.status === 'Onboarding',
-          'badge-warning': person.status === 'Awaiting'
+          'badge-success': person.status === 'Aprobado',
+          'badge-primary': person.status === 'Rechazado',
+          'badge-warning': person.status === 'Pendiente'
         }">{{ person.status }}</span>
       </td>
-      <td>{{ person.position }}</td>
+      <td>
+        <div class="d-flex align-items-center">
+          <div class="ms-3">
+            <p class="text-muted mb-0">{{ person.department }}</p>
+          </div>
+        </div>
+      </td>
       <td>
         <!-- Botón que abre el modal -->
         <button
@@ -72,10 +78,12 @@
         <h4 class="modal-title" id="editModalLabel">Ver acciones</h4>
       </div>
       <div class="modal-body">
-        <p><strong>Name:</strong> {{ selectedPerson?.name }}</p>
-        <p><strong>Email:</strong> {{ selectedPerson?.email }}</p>
-        <p><strong>Title:</strong> {{ selectedPerson?.title }}</p>
-        <p><strong>Department:</strong> {{ selectedPerson?.department }}</p>
+        <p><strong>Nombre:</strong> {{ selectedPerson?.name }}</p>
+        <p><strong>Correo:</strong> {{ selectedPerson?.email }}</p>
+        <p><strong>Tipo usuario:</strong> {{ selectedPerson?.title }}</p>
+        <p><strong>Municipio:</strong> {{ selectedPerson?.department }}</p>
+        <p><strong>Identificación:</strong> {{ selectedPerson?.documento }}</p>
+        <p><strong>Dirección:</strong> {{ selectedPerson?.direccion }}</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-success" (click)="approve()">Approve</button>

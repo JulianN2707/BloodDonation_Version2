@@ -29,8 +29,9 @@ public class RollBackDesaprobarSolicitudConsumer : IConsumer<RollBackDesaprobarS
 
             if (solicitud is not null)
             {
+                var estadoSolicitudUsuarioRechazada = new Guid("B05A7F4A-4D21-4C4D-BF76-19C51F1F25C7");
                 solicitud.FechaRechazo = DateTime.UtcNow;
-                solicitud.EstadoSolicitudUsuarioId = 0;
+                solicitud.EstadoSolicitudUsuarioId = estadoSolicitudUsuarioRechazada;
                 await _solicitudesSpecificationUnitOfWork._solicitudRepository.UpdateAsync(solicitud);
                 await _solicitudesSpecificationUnitOfWork.SaveChangesAsync();
                 _logger.LogInformation($"IRollBackDesaprobarSolicitudEvent event Consumed.");

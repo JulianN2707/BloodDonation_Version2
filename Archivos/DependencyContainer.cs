@@ -11,15 +11,14 @@ namespace Archivos;
 
 public static class DependencyContainer
 {
-    public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration){
-
-       services.AddDbContext<ArchivosContext>();
-
+    public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
+    {
         services.AddScoped
             (typeof(IArchivosSpecificationUnitOfWork), typeof(ArchivosSpecificationUnitOfWork));
 
         services.AddDbContext<ArchivosContext>(options =>
         options.UseSqlServer(configuration.GetValue<string>("ConnectionStrings:ConnectionString")));
+
         services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
         services.AddSwaggerGen();
         services.AddMediatR(Assembly.GetExecutingAssembly());
