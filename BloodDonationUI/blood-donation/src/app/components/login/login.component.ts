@@ -42,13 +42,13 @@ export class LoginComponent implements OnInit{
 
   iniciarSesion(credenciales: any): void {
     console.log("CREDENCIALES: ", credenciales);
-    if(credenciales.usuario == "enfermeranikita@gmail.com" && credenciales.contrasena == "Colombia2024."){
+    if(credenciales.usuario == "enfermeranc@gmail.com" && credenciales.contrasena == "Colombia2024."){
       console.log("Inicio enfermero");
       this.router.navigate(['/registro-donacion']);
     }
-    else if(credenciales.usuario == "solicitante@gmail.com" && credenciales.contrasena == "Colombia2024."){
+    else if(credenciales.usuario == "admin@gmail.com" && credenciales.contrasena == "Colombia2024."){
       console.log("Inicio solicitante");
-      this.router.navigate(['/create-usuario']);
+      this.router.navigate(['/administrative']);
     }
   }
 
