@@ -4,6 +4,6 @@ namespace DonacionSangre.Domain.Interfaces
 {
     public interface IReservaDonacionService
     {
-        Task<ReservaDonacion> CrearReservaAsync(Persona persona, DateTime fechaReserva);
+        Task<ReservaDonacion> CrearReservaAsync(UsuarioDonacion usuarioDonacion, DateTime fechaReserva);
     }
 }

@@ -1,5 +1,7 @@
 ﻿using DonacionSangre.Domain.Dtos;
+using DonacionSangre.Domain.Entities;
 using DonacionSangre.Domain.Interfaces.MongoRepository;
+using DonacionSangre.Domain.Interfaces.SqlServerRepository;
 using System.Collections;
 
 namespace DonacionSangre.Infrastructure.Services.NotificacionesAutomaticas
@@ -8,30 +10,30 @@ namespace DonacionSangre.Infrastructure.Services.NotificacionesAutomaticas
     {
         private readonly ICentroSaludMongoRepository _centroSaludMongoRepository;
         private readonly ISolicitudDonacionMongoRepository _solicitudDonacionMongoRepository;
-        private readonly IPersonaMongoRepository _personaMongoRepository;
+        private readonly IRepository<UsuarioDonacion> _usuarioDonacionRepository;
 
         public NotificacionAutomaticaService(ICentroSaludMongoRepository centroSaludMongoRepository,
-            ISolicitudDonacionMongoRepository solicitudDonacionMongoRepository, IPersonaMongoRepository personaMongoRepository)
+            ISolicitudDonacionMongoRepository solicitudDonacionMongoRepository, IRepository<UsuarioDonacion> usuarioDonacionRepository)
         {
             _centroSaludMongoRepository = centroSaludMongoRepository;
             _solicitudDonacionMongoRepository = solicitudDonacionMongoRepository;
-            _personaMongoRepository = personaMongoRepository;
+            _usuarioDonacionRepository = usuarioDonacionRepository;
         }
 
         public async Task<List<Recipient>> NotificarSolicitudesDonacion()
         {
             List<Recipient> notificaciones = new();
-            var personas = await _personaMongoRepository.GetPersonasAsync();
-            foreach (var persona in personas)
+            var usuariosDonacion = await _usuarioDonacionRepository.ListAsync();
+            foreach (var usuarioDonacion in usuariosDonacion)
             {
-                var solicitudDonacion = await _solicitudDonacionMongoRepository.GetSolicitudDonacionByTipoSangreYMunicipio(persona.MunicipioId, persona.TipoSangre);
+                var solicitudDonacion = await _solicitudDonacionMongoRepository.GetSolicitudDonacionByTipoSangreYMunicipio(usuarioDonacion.MunicipioId, usuarioDonacion.TipoSangre);
                 if (solicitudDonacion is not null)
                 {
                     notificaciones.Add(new Recipient
                     {
-                        EMail = persona.Correo,
+                        EMail = usuarioDonacion.CorreoElectronico,
                         TemplateVars = new Hashtable{
-                                { "NOMBRE_DONANTE", persona.Nombre + " " + persona.Apellido },
+                                { "NOMBRE_DONANTE", usuarioDonacion.PrimerNombre + " " + usuarioDonacion.PrimerApellido },
                                 { "CIUDAD", "Popayan" },
                             }
                     });

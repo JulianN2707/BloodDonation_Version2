@@ -12,7 +12,6 @@ namespace DonacionSangre.Domain.Entities
         public required string Nombre { get; set; }
         public Guid DepartamentoId { get; set; }
         public virtual Departamento Departamento { get; set; } = null!;
-        public virtual ICollection<Persona> Personas { get; set; } = [];
         public virtual ICollection<CentroSalud> CentrosSalud { get; set; } = [];
     }
 }

@@ -16,7 +16,7 @@ public class SolicitudUsuario
     public string? PersonaCelular { get; set; }
     public string? PersonaDireccion { get; set; }
     public int EstadoSolicitudUsuarioId { get; set; }
-    public int TipoCargoPersonaId { get; set; }
+    public Guid TipoPersonaId { get; set; }
     public DateTime FechaCreacion { get; set; }
     public DateTime? FechaAprobacion { get; set; }
     public string? MotivoRechazo { get; set; }
@@ -31,7 +31,7 @@ public class SolicitudUsuario
     string? personaSegundoNombre,
     string? personaCorreoElectronico, 
     int estadoSolicitudUsuarioId, 
-    int tipoCargoPersonaId, 
+    Guid tipoPersonaId, 
     string? personaCelular = null, 
     string? personaDireccion = null, 
     Guid? personaMunicipioDireccionId = null)
@@ -46,7 +46,7 @@ public class SolicitudUsuario
         PersonaSegundoNombre = personaSegundoNombre,
         PersonaCorreoElectronico = personaCorreoElectronico,
         EstadoSolicitudUsuarioId = estadoSolicitudUsuarioId,
-        TipoCargoPersonaId = tipoCargoPersonaId,
+        TipoPersonaId = tipoPersonaId,
         FechaCreacion = DateTime.Now,
         PersonaCelular = personaCelular,
         PersonaDireccion = personaDireccion,
