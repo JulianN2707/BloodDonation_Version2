@@ -13,7 +13,7 @@ namespace DonacionSangre.Domain.Entities
         public Guid UsuarioId { get; set; }
         public Guid PersonaId {  get; set; }
         public Guid MunicipioId {  get; set; }
-        public TipoSangre TipoSangre { get; private set; }
+        public TipoSangre TipoSangre { get; set; }
         public required string PrimerApellido { get; set; }
         public required string PrimerNombre { get; set; }
         public required string CorreoElectronico { get; set; }

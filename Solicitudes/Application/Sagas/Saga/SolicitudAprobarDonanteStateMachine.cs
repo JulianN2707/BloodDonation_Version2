@@ -76,6 +76,10 @@ public class SolicitudAprobarDonanteStateMachine : MassTransitStateMachine<Solic
                context.Saga.PersonaNumeroCelular = context.Message.NumeroCelular;
                context.Saga.PersonaPrimerApellido = context.Message.PrimerApellido;
                context.Saga.PersonaPrimerNombre = context.Message.PrimerNombre;
+               context.Saga.MunicipioDireccionId = context.Message.MunicipioDireccionId;
+               context.Saga.GrupoSanguineo = context.Message.GrupoSanguineo;
+               context.Saga.FactorRh = context.Message.FactorRh;
+               context.Saga.Cargo = context.Message.Cargo;
 
            }).TransitionTo(PersonaCreada)
            .Send(new Uri($"queue:crear-usuario"), context => new CrearUsuarioMessage
@@ -110,7 +114,12 @@ public class SolicitudAprobarDonanteStateMachine : MassTransitStateMachine<Solic
                CorreoElectronicoPersona = context.Saga.PersonaCorreoElectronico == null ? "" : context.Saga.PersonaCorreoElectronico,
                PersonaPrimerApellido = context.Saga.PersonaPrimerApellido == null ? "" : context.Saga.PersonaPrimerApellido,
                PersonaPrimerNombre = context.Saga.PersonaPrimerNombre == null ? "" : context.Saga.PersonaPrimerNombre,
-               SagaQueueName = context.Saga.SagaQueueName
+               SagaQueueName = context.Saga.SagaQueueName,
+               MunicipioDireccionId = context.Saga.MunicipioDireccionId,
+               GrupoSanguineo = context.Saga.GrupoSanguineo,
+               FactorRh = context.Saga.FactorRh,
+               Cargo = context.Saga.Cargo
+
            }).TransitionTo(EnviarCreacionDonante));
 
 

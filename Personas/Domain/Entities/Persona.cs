@@ -20,8 +20,8 @@ namespace Personas.Domain.Entities
         public string? CorreoElectronico { get; set; }
         public string? Celular { get; set; }
         public string? Direccion { get; set; }
-        public Guid TipoPersonaId { get; private set; }
-        public TipoSangre TipoSangre { get; private set; } = null!;
+        public Guid TipoPersonaId { get; set; }
+        public TipoSangre TipoSangre { get; set; } = null!;
         public virtual TipoPersona TipoPersona { get; set; } = null!;
     }
 }
