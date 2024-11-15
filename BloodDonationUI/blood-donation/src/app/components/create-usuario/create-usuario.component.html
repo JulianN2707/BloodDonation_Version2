@@ -1,0 +1,113 @@
+
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="container my-4 p-4 border rounded" style="margin-top: 30px;">
+  <div class="container">
+    <div class="section-title wow fadeInUp">
+      <h2>Formulario De Registro Usuario</h2>
+    </div>
+    <div class="row">
+      <!-- Número de Documento -->
+      <div class="col-md-6">
+        <label for="NumeroDocumento" class="form-label">Número de Documento:</label>
+        <input id="NumeroDocumento" formControlName="NumeroDocumento" type="text" class="form-control" required />
+      </div>
+      
+      <!-- Fecha de Expedición -->
+      <div class="col-md-6">
+        <label for="FechaExpedicionDocumento" class="form-label">Fecha de Expedición:</label>
+        <input id="FechaExpedicionDocumento" formControlName="FechaExpedicionDocumento" type="date" class="form-control" required />
+      </div>
+  
+      <!-- Primer Apellido -->
+      <div class="col-md-6">
+        <label for="PrimerApellido" class="form-label">Primer Apellido:</label>
+        <input id="PrimerApellido" formControlName="PrimerApellido" type="text" class="form-control" />
+      </div>
+  
+      <!-- Primer Nombre -->
+      <div class="col-md-6">
+        <label for="PrimerNombre" class="form-label">Primer Nombre:</label>
+        <input id="PrimerNombre" formControlName="PrimerNombre" type="text" class="form-control" />
+      </div>
+  
+      <!-- Segundo Apellido -->
+      <div class="col-md-6">
+        <label for="SegundoApellido" class="form-label">Segundo Apellido:</label>
+        <input id="SegundoApellido" formControlName="SegundoApellido" type="text" class="form-control" />
+      </div>
+  
+      <!-- Segundo Nombre -->
+      <div class="col-md-6">
+        <label for="SegundoNombre" class="form-label">Segundo Nombre:</label>
+        <input id="SegundoNombre" formControlName="SegundoNombre" type="text" class="form-control" />
+      </div>
+  
+      <!-- Correo Electrónico -->
+      <div class="col-md-6">
+        <label for="CorreoElectronico" class="form-label">Correo Electrónico:</label>
+        <input id="CorreoElectronico" formControlName="CorreoElectronico" type="email" class="form-control" />
+      </div>
+  
+      <!-- Celular -->
+      <div class="col-md-6">
+        <label for="Celular" class="form-label">Celular:</label>
+        <input id="Celular" formControlName="Celular" type="text" class="form-control" />
+      </div>
+  
+      <!-- Dirección -->
+      <div class="col-md-6">
+        <label for="Direccion" class="form-label">Dirección:</label>
+        <input id="Direccion" formControlName="Direccion" type="text" class="form-control" />
+      </div>
+  
+      <!-- Municipio Dirección ID -->
+      <div class="col-md-6">
+        <label for="MunicipioDireccionId" class="form-label">Municipio Dirección:</label>
+        <select class="form-control" formControlName="MunicipioDireccionId">
+          <option value="90764425-B8BB-4316-AE66-A8B64068CB77">Popayán</option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <label for="grupoSanguineo">Grupo sanguíneo</label>
+        <select class="form-control" formControlName="GrupoSanguineo">
+          <option value="O">O</option>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="AB">AB</option>
+        </select>
+      </div>
+
+      <div class="col-md-6 col-sm-6">
+        <label for="factorRh">RH</label>
+        <select class="form-control" formControlName="FactorRh">
+          <option value="+">+</option>
+          <option value="-">-</option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <label for="TipoPersonaId" class="form-label">Tipo usuario:</label>
+        <select class="form-control" formControlName="TipoPersonaId">
+          <option value="9FF25FE2-0A6E-4D3C-A346-CFDEEA651C93">Enfermero</option>
+          <option value="C1C11FC4-0FC2-40A0-B496-FC7C465A5684">Usuario</option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <label for="archivo">Subir Archivo</label>
+        <input type="file" class="form-control" formControlName="archivo" id="archivo" accept="application/pdf, image/*">
+      </div>
+    </div>
+    <div class="row">
+          <!-- Botón de Envío -->
+          <div class="col-md-2 col-12" style="margin-top: 30px;">
+            <button type="submit" class="btn btn-success btn-lg px-4" [disabled]="formulario.invalid">Enviar</button>
+          </div>
+          <!--Botón cancelar-->
+          <div class="col-md-2 col-12" style="margin-top: 30px;">
+            <button type="button" class="btn btn-danger btn-lg px-4" (click)="cancelar()">Cancelar</button>
+          </div>
+    </div>
+    
+  </div>
+</form>
