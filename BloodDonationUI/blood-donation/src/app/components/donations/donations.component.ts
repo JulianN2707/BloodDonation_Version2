@@ -44,8 +44,6 @@ export class DonationsComponent implements OnInit {
 
   submitDonation(): void {
     if (this.formulario.valid) {
-      console.log("FORMULARIO: ", this.formulario);
-
       const donationData = this.formulario.value;
       this.addDonation(donationData);
     } else {
