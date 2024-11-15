@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include=".env" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Carter" Version="8.1.0" />
     <PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.8" />
@@ -20,11 +24,18 @@
 		<PrivateAssets>all</PrivateAssets>
 		<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	</PackageReference>
+  <PackageReference Include="MassTransit" Version="8.2.2" />
+	<PackageReference Include="MassTransit.ActiveMQ" Version="8.2.2" />
+  <PackageReference Include="DotNetEnv" Version="3.1.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Application\Features\SolicitudDonacion\Queries\" />
     <Folder Include="Infrastructure\MongoRepositories\ReservaMongoRepository\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../MassTransitMessages/MassTransitMessages.csproj" />
   </ItemGroup>
 
 </Project>

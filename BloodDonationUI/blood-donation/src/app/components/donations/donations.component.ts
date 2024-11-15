@@ -1,21 +1,68 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { BloodDonationService } from '../../services/blood-donation.service';
 import { CommonModule } from '@angular/common';
+import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-donations',
   standalone: true,
-  imports: [CommonModule],  // Elimina HttpClientModule de aquí
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './donations.component.html',
   styleUrls: ['./donations.component.css']
 })
 export class DonationsComponent implements OnInit {
+
+  private readonly fb = inject(FormBuilder);
   donations: any[] = [];
+  formulario!: any;
+  formularioReserva!:any;
+  minDate!: string;
 
   constructor(private bloodDonationService: BloodDonationService) {}
 
   ngOnInit(): void {
-    //this.loadDonations();
+    const today = new Date();
+    this.minDate = today.toISOString().split('T')[0]; // Formato AAAA-MM-DD
+    this.formulario = this.inicializarFormulario();
+    this.formularioReserva = this.inicializarFormularioReserva();
+  }
+
+  inicializarFormulario(): FormGroup {
+    return this.fb.group({
+      centroSaludId: ['', Validators.required],
+      grupoSanguineo: ['', Validators.required],
+      rh: ['', Validators.required]
+    });
+  }
+
+  inicializarFormularioReserva(): FormGroup{
+    return this.fb.group({
+      fechaReserva: ['', Validators.required]
+    });
+  }
+
+  submitDonation(): void {
+    if (this.formulario.valid) {
+      console.log("FORMULARIO: ", this.formulario);
+
+      const donationData = this.formulario.value;
+      this.addDonation(donationData);
+    } else {
+      console.error("Formulario inválido");
+    }
+  }
+
+  submitReserva(): void {
+    if (this.formularioReserva.valid) {
+      const requestReservaDonacion = {
+        personaId : "3EB55A17-2AFD-49CC-9D75-08DCE14DE84F",
+        fechaDonacion : this.formularioReserva.get('fechaReserva')?.value
+      }
+      console.log(requestReservaDonacion);
+      this.crearReservaDonacion(requestReservaDonacion);
+    } else {
+      console.error("Formulario inválido");
+    }
   }
 
   loadDonations(): void {
@@ -29,15 +76,26 @@ export class DonationsComponent implements OnInit {
     );
   }
 
-  addDonation(donation: any): void {
-    this.bloodDonationService.addDonation(donation).subscribe(
+  
+  crearReservaDonacion(donation: any): void {
+    this.bloodDonationService.crearReservaDonacion(donation).subscribe(
       (response) => {
-        console.log('Donación agregada:', response);
-        this.loadDonations(); // Recargamos la lista después de agregar
+        console.log('reserva agregada:', response);
       },
       (error) => {
         console.error('Error adding donation:', error);
       }
     );
+  }
+
+  addDonation(donation: any): void {
+    this.bloodDonationService.crearSolicitudDonacion(donation).subscribe({
+      next : (response : any) => {
+        console.log('Donación agregada:', response);
+      },
+      error : (error : any) => {
+        console.error('Error agregando la solicitud de donacion:', error);
+      }
+    })
   }
 }

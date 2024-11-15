@@ -26,11 +26,11 @@ public class CrearDonanteCommandHandler : IRequestHandler<CrearDonanteCommand, C
         SolicitudCrearDonanteMessage message = new(){
             CorrelationId = NewId.NextSequentialGuid(),
             SolicitudUsuarioId = solicitudUsuario.SolicitudUsuarioId,
-            SagaQueueName = "crear-solicitud-donante",
+            SagaQueueName = "saga-crear-donante",
             Archivos = archivosInfo,
             InformacionCorreo = informacionCorreos,
         };
-        var endpoint = await _massTransitService.GetSendEndpoint(new Uri($"queue:crear-solicitud-donante"));
+        var endpoint = await _massTransitService.GetSendEndpoint(new Uri($"queue:saga-crear-donante"));
         await endpoint.Send(message);
         return new CrearDonanteResponse {SolicitudId=solicitudUsuario.SolicitudUsuarioId};
     }

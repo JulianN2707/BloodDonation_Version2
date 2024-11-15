@@ -19,6 +19,7 @@ public class CrearPersonaMessage{
     public string? Celular { get; set; }
     public string? Direccion { get; set; }
     public int? MunicipioDireccionId { get; set; }
+    public DateTime FechaExpedicionDocumento { get; set; }
     public string SagaQueueName { get; set; } = string.Empty;
 }
 public class RollbackCrearPersonaMessage 
@@ -88,6 +89,12 @@ public record struct ArchivoDtoInfo
     public string TipoArchivo { get; init; }
     public int TipoArchivoId { get; init; }
 }
+public class CargaArchivoDto
+{
+    public Guid IdArchivo { get; set; }
+    public string NombreArchivo { get; set; }
+    public string TipoArchivo { get; set; }
+}
 public class EnviarCorreoDto
 {
     public Hashtable informacionCorreo {  get; set; }
@@ -107,5 +114,89 @@ public class ObtenerInformacionSolicitudMessage
     public Guid SolicitudUsuarioId { get; set; }
     public string SagaQueueName { get; set; }
 
+}
+public class SolicitudDonanteAprobadaMessage
+{
+    public Guid CorrelationId { get; set; }
+    public Guid SolicitudUsuarioId { get; set; }
+    public string Rol { get; set; }
+    public List<EnviarCorreoDto> InformacionCorreo { get; set; }
+    public string SagaQueueName { get; set; }
+}
+public class PersonaCreadaEvent
+{
+    public Guid CorrelationId { get; set; }
+    public Guid SolicitudUsuarioId { get; set; }
+    public Guid PersonaId { get; set; }
+    public string Direccion { get; set; }
+    public string NumeroCelular { get; set; }
+    public string CorreoElectronico { get; set; }
+    public string PrimerNombre { get; set; }
+    public string PrimerApellido { get; set; }
+
+
+}
+public class UsuarioCreadoEvent 
+{
+    public Guid CorrelationId { get; set; }
+    public Guid SolicitudUsuarioId { get; set; }
+    public Guid UsuarioId { get; set; }
+}
+public class DonanteCreadoEvent 
+{
+    public Guid CorrelationId { get; set; }
+    public Guid SolicitudUsuarioId { get; set; }
+    public Guid DonanteId { get; set; }
+}
+public class PersonaCreadaErrorEvent 
+{
+    public Guid CorrelationId { get; set; }
+    public Guid SolicitudUsuarioId { get; set; }
+}
+public class UsuarioCreadoErrorEvent 
+{
+    public Guid CorrelationId { get; set; }
+    public Guid SolicitudUsuarioId { get; set; }
+}
+public class DonanteCreadoErrorEvent 
+{
+    public Guid CorrelationId { get; set; }
+    public Guid SolicitudUsuarioId { get; set; }
+}
+public class CrearUsuarioMessage 
+{
+    public Guid CorrelationId { get; set; }
+    public Guid SolicitudUsuarioId { get; set; }
+    public Guid PersonaId { get; set; }
+    public string CorreoElectronico { get; set; }
+    public string PrimerNombre { get; set; }
+    public string PrimerApellido { get; set; }
+    public string Rol { get; set; }
+    public string SagaQueueName { get; set; }
+}
+public class EnviarCreacionDonanteMessage 
+{
+    public Guid CorrelationId { get; set; }
+    public Guid SolicitudUsuarioId { get; set; }
+    public Guid PersonaId { get; set; }
+    public Guid UsuarioId { get; set; }
+    public string CorreoElectronicoPersona { get; set; }
+    public string PersonaDireccion { get; set; }
+    public string PersonaCelular { get; set; }
+    public string PersonaPrimerNombre { get; set; }
+    public string PersonaPrimerApellido { get; set; }
+    public string SagaQueueName { get; set; }
+}
+public class RollBackCreateUsuarioEvent 
+{
+    public Guid CorrelationId { get; set; }
+    public Guid UsuarioId { get; set; }
+    public Guid SolicitudUsuarioId { get; set; }
+}
+public class RollBackCreatePersonaEvent
+{
+    public Guid CorrelationId { get; set; }
+    public Guid PersonaId { get; set; }
+    public Guid SolicitudUsuarioId { get; set; }
 }
 

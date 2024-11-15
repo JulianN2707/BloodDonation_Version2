@@ -1,6 +1,12 @@
+using Carter;
 using DotNetEnv;
+using MassTransit;
+using MassTransitMessages.Formatter;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Solicitudes;
+using Solicitudes.Application.Consumers;
+using Solicitudes.Application.Sagas.Saga;
+using Solicitudes.Application.Sagas.StateInstances;
 using Solicitudes.Domain.Common;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -49,53 +55,103 @@ builder.Services.AddCors(options =>
                .WithExposedHeaders("X-Pagination");
     });
 });
-// #region configuration MQ
-// var providerMQ = configuration.GetValue<string>("MQ_Provider");
+#region configuration MQ
+var providerMQ = configuration.GetValue<string>("MQ_Provider");
 
-// if (providerMQ.Equals("activeMQ"))
-// {
-//     #region active config-consumer
-//     builder.Services.AddMassTransit(x =>
-//     {
-//         x.AddConsumer<CrearPersonaJuridicaConsumer>();
+if (providerMQ.Equals("activeMQ"))
+{
+    #region active config-consumer
+    builder.Services.AddMassTransit(x =>
+    {
+        x.AddConsumer<ObtenerInformacionSolicitudConsumer>();
+        x.AddConsumer<RollBackEliminarSolicitudConsumer>();
+        x.AddConsumer<RollBackDesaprobarSolicitudConsumer>();
+        x.AddConsumer<EnviarNotificacionConsumer>();
+        x.AddSagaStateMachine<SolicitudDonanteCreadoStateMachine, SolicitudCrearDonanteStateInstance>().InMemoryRepository();
+        x.AddSagaStateMachine<SolicitudAprobarDonanteStateMachine, SolicitudAprobarDonanteStateInstance>().InMemoryRepository();
 
-//         x.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(prefix: $"{environment}", includeNamespace: false));
+        x.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(prefix: $"{environment}", includeNamespace: false));
 
-//         x.UsingActiveMq((context, cfg) =>
-//         {
-//             cfg.Host(configuration.GetValue<string>("MQ_Active_Host")!, configuration.GetValue<int>("MQ_Active_Port"), host =>
-//             {
-//                 host.Username(configuration.GetValue<string>("MQ_Active_Username")!);
-//                 host.Password(configuration.GetValue<string>("MQ_Active_Password")!);
-//             });
-            
-//             cfg.MessageTopology.SetEntityNameFormatter(new MessageNameFormatter());
+        x.UsingActiveMq((activeContext, activeConfig) =>
+        {
+            activeConfig.Host(configuration.GetValue<string>("MQ_Active_Host")!, configuration.GetValue<int>("MQ_Active_Port"), h =>
+            {
+                h.Username(configuration.GetValue<string>("MQ_Active_Username")!);
+                h.Password(configuration.GetValue<string>("MQ_Active_Password")!);
+            });
 
-//             cfg.ReceiveEndpoint($"{environment}-crear-persona-juridica", x =>
-//             {
-//                 x.ConfigureConsumeTopology = false;
-//                 x.ConfigureConsumer<CrearPersonaJuridicaConsumer>(context, cfg =>
-//                 {
-//                     cfg.UseDelayedRedelivery(r => r.Intervals(TimeSpan.FromMinutes(5), TimeSpan.FromMinutes(15), TimeSpan.FromMinutes(30)));
-//                     cfg.UseMessageRetry(r => r.Interval(5,TimeSpan.FromMinutes(4)));
-//                     cfg.UseInMemoryOutbox(context);
-//                 });
-//             });
+            activeConfig.MessageTopology.SetEntityNameFormatter(new MessageNameFormatter());
 
-//         });
-//     });
-//     #endregion
-// }
-// #endregion
+            activeConfig.ReceiveEndpoint($"saga-aprobar-donante", e =>
+            {
+                e.ConfigureConsumeTopology = false;
+                e.UseMessageRetry(r => r.Interval(5,TimeSpan.FromMinutes(4)));
+                e.UseDelayedRedelivery(r => r.Intervals(TimeSpan.FromMinutes(5), TimeSpan.FromMinutes(15), TimeSpan.FromMinutes(30)));
+                e.ConfigureSaga<SolicitudCrearDonanteStateInstance>(activeContext);           
+                
+            });
+            activeConfig.ReceiveEndpoint($"saga-crear-donante", e =>
+            {
+                e.ConfigureConsumeTopology = false;
+                e.UseMessageRetry(r => r.Interval(5,TimeSpan.FromMinutes(4)));
+                e.UseDelayedRedelivery(r => r.Intervals(TimeSpan.FromMinutes(5), TimeSpan.FromMinutes(15), TimeSpan.FromMinutes(30)));
+                e.ConfigureSaga<SolicitudAprobarDonanteStateInstance>(activeContext);
+            });
+
+            activeConfig.ReceiveEndpoint($"obtener-informacion-solicitud", x =>
+            {
+                x.ConfigureConsumeTopology = false;
+                x.ConfigureConsumer<ObtenerInformacionSolicitudConsumer>(activeContext, cfg =>
+                {
+                    cfg.UseDelayedRedelivery(r => r.Intervals(TimeSpan.FromMinutes(5), TimeSpan.FromMinutes(15), TimeSpan.FromMinutes(30)));
+                    cfg.UseMessageRetry(r => r.Interval(5,TimeSpan.FromMinutes(4)));
+                    cfg.UseInMemoryOutbox(activeContext);
+
+                });
+            });
+
+            activeConfig.ReceiveEndpoint($"eliminar-solicitud", x =>
+            {
+                x.ConfigureConsumeTopology = false;
+                x.ConfigureConsumer<RollBackEliminarSolicitudConsumer>(activeContext, cfg =>
+                {
+                    cfg.UseDelayedRedelivery(r => r.Intervals(TimeSpan.FromMinutes(5), TimeSpan.FromMinutes(15), TimeSpan.FromMinutes(30)));
+                    cfg.UseMessageRetry(r => r.Interval(5,TimeSpan.FromMinutes(4)));
+                    cfg.UseInMemoryOutbox(activeContext);
+                });
+            });
+            activeConfig.ReceiveEndpoint($"desaprobar-solicitud", x =>
+            {
+                x.ConfigureConsumeTopology = false;
+                x.ConfigureConsumer<RollBackDesaprobarSolicitudConsumer>(activeContext, cfg =>
+                {
+                    cfg.UseDelayedRedelivery(r => r.Intervals(TimeSpan.FromMinutes(5), TimeSpan.FromMinutes(15), TimeSpan.FromMinutes(30)));
+                    cfg.UseMessageRetry(r => r.Interval(5,TimeSpan.FromMinutes(4)));
+                    cfg.UseInMemoryOutbox(activeContext);
+                });
+            });
+            activeConfig.ReceiveEndpoint($"enviar-notificacion", x =>
+            {
+                x.ConfigureConsumeTopology = false;
+                x.ConfigureConsumer<EnviarNotificacionConsumer>(activeContext, cfg =>
+                {
+                    cfg.UseDelayedRedelivery(r => r.Intervals(TimeSpan.FromMinutes(5), TimeSpan.FromMinutes(15), TimeSpan.FromMinutes(30)));
+                    cfg.UseMessageRetry(r => r.Interval(5,TimeSpan.FromMinutes(4)));
+                    cfg.UseInMemoryOutbox(activeContext);
+                });
+            });
+            activeConfig.EnableArtemisCompatibility();
+        });
+    });
+    #endregion
+}
+#endregion
 
 var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI(setupAction =>
 {
-    setupAction.SwaggerEndpoint(
-        "/swagger/openAPISpecification/swagger.json", "Transversales Personas API");
-
-    setupAction.DocumentTitle = "Sisfv.Transversales.Personas.API";
+    setupAction.DocumentTitle = "SolicitudesAPI";
     setupAction.DefaultModelsExpandDepth(-1);
     setupAction.DisplayOperationId();
     setupAction.DisplayRequestDuration();
@@ -103,6 +159,7 @@ app.UseSwaggerUI(setupAction =>
 
 app.UseHealthChecks("/healthz");
 app.UseRouting();
+app.MapCarter();
 app.UseCors("AllowAnyOrigin");
 app.Run();
 

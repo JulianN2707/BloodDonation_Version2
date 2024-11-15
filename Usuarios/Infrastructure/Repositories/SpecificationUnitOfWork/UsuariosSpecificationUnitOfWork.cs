@@ -1,32 +1,30 @@
 using System;
+using Usuarios.Domain.Entities;
 using Usuarios.Infrastructure.Context;
+using Usuarios.Infrastructure.Repositories.UsuariosSpecification;
 
 namespace Usuarios.Infrastructure.Repositories.SpecificationUnitOfWork;
 
 public class UsuariosSpecificationUnitOfWork : IUsuariosSpecificationUnitOfWork
 {
     private readonly UsuariosContext _usuariosContext;
+    public IRepository<Usuario> _usuarioRepository { get; private set; }
 
-    public UsuariosSpecificationUnitOfWork(UsuariosContext usuariosContext)
+    public UsuariosSpecificationUnitOfWork(UsuariosContext usuariosContext,IRepository<Usuario> usuarioRepository)
     {
         _usuariosContext = usuariosContext;
+        _usuarioRepository = usuarioRepository;
     }
 
-    public async Task BeginTransaction()
-        {
-            await _usuariosContext.Database.BeginTransactionAsync();
-        }
+    public void Dispose()
+    {
+        _usuariosContext.Dispose();
+    }
 
-        public async Task Rollback()
-        {
-            await _usuariosContext.Database.RollbackTransactionAsync();
-        }
-
-        public async Task<int> Save() => await _usuariosContext.SaveChangesAsync();
-
-        public void Dispose()
-        {
-            _usuariosContext.Dispose();
-        }
+    public async Task<int> SaveChangesAsync()
+    {
+        return await _usuariosContext.SaveChangesAsync();
+    }
+    
 
 }
