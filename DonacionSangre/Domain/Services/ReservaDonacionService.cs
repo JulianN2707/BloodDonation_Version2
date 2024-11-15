@@ -7,15 +7,15 @@ namespace DonacionSangre.Domain.Services
 {
     public class ReservaDonacionService(ISolicitudDonacionMongoRepository solicitudDonacionRepository) : IReservaDonacionService
     {
-        public async Task<ReservaDonacion> CrearReservaAsync(Persona persona, DateTime fechaReserva)
+        public async Task<ReservaDonacion> CrearReservaAsync(UsuarioDonacion usuarioDonacion, DateTime fechaReserva)
         {
-            var solicitudDonacion = await ObtenerSolicitudDonacionAsync(persona);
-            return new ReservaDonacion(fechaReserva, persona.PersonaId, solicitudDonacion.SolicitudDonacionId, EstadoReserva.Confirmada()); 
+            var solicitudDonacion = await ObtenerSolicitudDonacionAsync(usuarioDonacion);
+            return new ReservaDonacion(fechaReserva, usuarioDonacion.PersonaId, solicitudDonacion.SolicitudDonacionId, EstadoReserva.Confirmada()); 
         }
 
-        private async Task<SolicitudDonacion> ObtenerSolicitudDonacionAsync(Persona persona)
+        private async Task<SolicitudDonacion> ObtenerSolicitudDonacionAsync(UsuarioDonacion usuarioDonacion)
         {
-            var solicitudDonacion = await solicitudDonacionRepository.GetSolicitudDonacionByTipoSangreYMunicipio(persona.MunicipioId, persona.TipoSangre);
+            var solicitudDonacion = await solicitudDonacionRepository.GetSolicitudDonacionByTipoSangreYMunicipio(usuarioDonacion.MunicipioId, usuarioDonacion.TipoSangre);
 
             if (solicitudDonacion is null)
             {

@@ -16,10 +16,6 @@ namespace DonacionSangre.Infrastructure.Configuration
             builder.Property(rd => rd.FechaReserva)
                 .IsRequired();
 
-            builder.HasOne(rd => rd.Persona)
-                .WithMany(p => p.ReservasDonacion)
-                .HasForeignKey(rd => rd.PersonaId);
-
             builder.HasOne(m => m.SolicitudDonacion)
                 .WithMany(d => d.ReservasDonacion)
                 .HasForeignKey(m => m.SolicitudDonacionId)

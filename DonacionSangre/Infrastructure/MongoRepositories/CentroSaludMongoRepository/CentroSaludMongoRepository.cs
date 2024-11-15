@@ -2,7 +2,6 @@
 using DonacionSangre.Domain.Interfaces.MongoRepository;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using EDonante = DonacionSangre.Domain.Entities.Test.Donante;
 
 namespace DonacionSangre.Infrastructure.Repositories.MongoDbRepository
 {

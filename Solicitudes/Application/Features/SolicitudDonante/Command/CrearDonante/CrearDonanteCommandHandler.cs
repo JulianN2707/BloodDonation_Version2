@@ -37,7 +37,7 @@ public class CrearDonanteCommandHandler : IRequestHandler<CrearDonanteCommand, C
     public async Task<SolicitudUsuario> CrearSolicitud(CrearDonanteCommand request){
         var solicitud = new SolicitudUsuario();
         solicitud = solicitud.CrearSolicitud(request.NumeroDocumento,request.FechaExpedicionDocumento,request.PrimerApellido,
-        request.PrimerNombre,request.SegundoApellido,request.SegundoNombre,request.CorreoElectronico,1,request.TipoCargoPersonaId,request.Celular,
+        request.PrimerNombre,request.SegundoApellido,request.SegundoNombre,request.CorreoElectronico,1,request.TipoPersonaId,request.Celular,
         request.Direccion,request.MunicipioDireccionId);
         await _solicitudesSpecificationUnitOfWork._solicitudRepository.AddAsync(solicitud);
         await _solicitudesSpecificationUnitOfWork.SaveChangesAsync();
@@ -67,7 +67,7 @@ public class CrearDonanteCommandHandler : IRequestHandler<CrearDonanteCommand, C
                 ArchivoBytes = archivoBytes,
                 NombreArchivo = nombreArchivo,
                 TipoArchivo = tipoArchivo,
-                TipoArchivoId = int.Parse(archivoDto.TipoArchivoId),
+                TipoArchivoId = archivoDto.TipoArchivoId,
             };
             // Agregar el objeto ArchivoDtoInfo a la lista
             archivosInfo.Add(archivoInfo);

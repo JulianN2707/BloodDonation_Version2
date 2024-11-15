@@ -22,7 +22,7 @@ public class CrearUsuarioConsumer : IConsumer<CrearUsuarioMessage>
             var usuario = new Usuario{
                 PersonaId = data.PersonaId,
                 FechaRegistro = DateTime.UtcNow,
-                EstadoUsuarioId = 1
+                EstaActivo = true
             };
             await _usuariosSpecificationUnitOfWork._usuarioRepository.AddAsync(usuario);
             await _usuariosSpecificationUnitOfWork._usuarioRepository.SaveChangesAsync();

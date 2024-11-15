@@ -10,6 +10,6 @@ public class Usuario
 
     public DateTime FechaRegistro { get; set; }
 
-    public int EstadoUsuarioId { get; set; }
+    public bool EstaActivo { get; set; }
 
 }
