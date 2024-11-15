@@ -1,0 +1,12 @@
+.back-link {
+  margin-top: 15px;
+}
+
+.back-link a {
+  color: #4CAF50;
+  font-size: 14px;
+  font-style: italic;
+  text-decoration: none;
+  cursor: pointer;
+}
+

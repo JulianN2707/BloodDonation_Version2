@@ -1,6 +1,6 @@
 ﻿using Carter;
 using MediatR;
-using Personas.Application.Features.Persona.Queries.ObtenerPersonaPorId;
+
 
 namespace Personas.Application.Features.Personas.Queries.ObtenerPersonaPorId
 {

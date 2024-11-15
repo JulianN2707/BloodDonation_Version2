@@ -9,11 +9,13 @@ public class PersonaSpecificationUnitOfWork : IPersonaSpecificationUnitOfWork
 {
     private readonly PersonasContext _personasContext;
     public IRepository<Persona> _personaRepository { get; private set; }
+    public IRepository<TipoPersona> _tipoPersonaRepository { get; private set; }
 
-    public PersonaSpecificationUnitOfWork(PersonasContext personasContext,IRepository<Persona> personaRepository)
+    public PersonaSpecificationUnitOfWork(PersonasContext personasContext,IRepository<Persona> personaRepository,IRepository<TipoPersona> tipoPersonaRepository)
     {
         _personasContext = personasContext;
         _personaRepository = personaRepository;
+        _tipoPersonaRepository = tipoPersonaRepository;
     }
 
     public void Dispose()
