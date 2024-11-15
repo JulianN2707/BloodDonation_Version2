@@ -15,6 +15,5 @@ namespace DonacionSangre.Domain.Entities
         public virtual Municipio Municipio { get; set; } = null!;
         [BsonIgnore]
         public virtual ICollection<SolicitudDonacion> SolicitudesDonacion { get; set; } = [];
-        public virtual ICollection<Persona> Personas { get; set; } = [];
     }
 }

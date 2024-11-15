@@ -10,9 +10,7 @@ using DonacionSangre.Infrastructure.MongoRepositories.SolicitudDonacionMongoRepo
 using DonacionSangre.Infrastructure.Repositories.MongoDbRepository;
 using DonacionSangre.Infrastructure.Services.NotificacionesAutomaticas;
 using DonacionSangre.Infrastructure.Services.Sincronizacion;
-using DonacionSangre.Infrastructure.SqlServerRepositories.Donante;
 using DonacionSangre.Infrastructure.SqlServerRepositories.Repository;
-using DonacionSangre.Infrastructure.SqlServerRepositories.Reserva;
 using DotNetEnv;
 using MassTransit;
 using MassTransitMessages.Formatter;
@@ -41,11 +39,9 @@ if (environment != "staging")
 // Configuraci�n de servicios
 // Agregar SQL Server DbContext
 builder.Services.AddDbContext<SqlDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerConnection")));
+    options.UseSqlServer(configuration.GetConnectionString("SqlServerConnection")));
 
 // Configuraci�n de los Repositorios
-builder.Services.AddScoped<IDonanteRepository, DonanteRepository>();
-builder.Services.AddScoped<IReservaRepository, ReservaRepository>();
 builder.Services.AddScoped<INotificacionAutomaticaService, NotificacionAutomaticaService>();
 
 //CORS
@@ -58,9 +54,7 @@ config
 
 // Configuraci�n del Repositorio de MongoDB
 builder.Services.AddSingleton<IReservaDonacionMongoRepository, ReservaDonacionMongoRepository>();
-builder.Services.AddSingleton<IDonanteMongoRepository, DonanteMongoRepository>();
 builder.Services.AddSingleton<ISolicitudDonacionMongoRepository, SolicitudDonacionMongoRepository>();
-builder.Services.AddSingleton<IPersonaMongoRepository, PersonaMongoRepository>();
 builder.Services.AddSingleton<ICentroSaludMongoRepository, CentroSaludMongoRepository>();
 builder.Services.AddSingleton<IReservaDonacionService, ReservaDonacionService>();
 

@@ -6,19 +6,25 @@ import { from, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class BloodDonationService {
-  private BaseUrl = 'https://localhost:7191/api';
+  private BaseUrlDonacion = 'https://localhost:7191/api';
+  private BaseUrlSolicitud = 'https://localhost:5021/api';
+  private BaseUrlPersona = 'https://localhost:5169/api';
 
   constructor(private http: HttpClient) {}
 
   getDonations(): Observable<any> {
-    return this.http.get(`${this.BaseUrl}/donations`);
+    return this.http.get(`${this.BaseUrlDonacion}/donations`);
+  }
+
+  crearDonante(request : any): Observable<any> {
+    return this.http.post(`${this.BaseUrlSolicitud}/crear-solicitud-donante`, request);
   }
   
   crearReservaDonacion(request : any): Observable<any> {
-    return this.http.get(`${this.BaseUrl}/crear-reserva-donacion`);
+    return this.http.get(`${this.BaseUrlDonacion}/crear-reserva-donacion`);
   }
 
   crearSolicitudDonacion(donation: any): Observable<any> {
-    return from(this.http.post<any>(`${this.BaseUrl}/crear-solicitud-donacion`, donation));
+    return from(this.http.post<any>(`${this.BaseUrlDonacion}/crear-solicitud-donacion`, donation));
   }
 }

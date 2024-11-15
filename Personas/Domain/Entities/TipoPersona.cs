@@ -1,7 +1,7 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
-namespace DonacionSangre.Domain.Entities
+namespace Personas.Domain.Entities
 {
     public class TipoPersona
     {
