@@ -1,5 +1,5 @@
-
-<form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="container my-4 p-4 border rounded" style="margin-top: 30px;">
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="container my-4 p-4 border rounded"
+  style="margin-top: 30px;">
   <div class="container">
     <div class="section-title wow fadeInUp">
       <h2>Formulario De Registro Usuario</h2>
@@ -10,55 +10,56 @@
         <label for="NumeroDocumento" class="form-label">Número de Documento:</label>
         <input id="NumeroDocumento" formControlName="NumeroDocumento" type="text" class="form-control" required />
       </div>
-      
+
       <!-- Fecha de Expedición -->
       <div class="col-md-6">
         <label for="FechaExpedicionDocumento" class="form-label">Fecha de Expedición:</label>
-        <input id="FechaExpedicionDocumento" formControlName="FechaExpedicionDocumento" type="date" class="form-control" required />
+        <input id="FechaExpedicionDocumento" formControlName="FechaExpedicionDocumento" type="date" class="form-control"
+          required />
       </div>
-  
+
       <!-- Primer Apellido -->
       <div class="col-md-6">
         <label for="PrimerApellido" class="form-label">Primer Apellido:</label>
         <input id="PrimerApellido" formControlName="PrimerApellido" type="text" class="form-control" />
       </div>
-  
+
       <!-- Primer Nombre -->
       <div class="col-md-6">
         <label for="PrimerNombre" class="form-label">Primer Nombre:</label>
         <input id="PrimerNombre" formControlName="PrimerNombre" type="text" class="form-control" />
       </div>
-  
+
       <!-- Segundo Apellido -->
       <div class="col-md-6">
         <label for="SegundoApellido" class="form-label">Segundo Apellido:</label>
         <input id="SegundoApellido" formControlName="SegundoApellido" type="text" class="form-control" />
       </div>
-  
+
       <!-- Segundo Nombre -->
       <div class="col-md-6">
         <label for="SegundoNombre" class="form-label">Segundo Nombre:</label>
         <input id="SegundoNombre" formControlName="SegundoNombre" type="text" class="form-control" />
       </div>
-  
+
       <!-- Correo Electrónico -->
       <div class="col-md-6">
         <label for="CorreoElectronico" class="form-label">Correo Electrónico:</label>
         <input id="CorreoElectronico" formControlName="CorreoElectronico" type="email" class="form-control" />
       </div>
-  
+
       <!-- Celular -->
       <div class="col-md-6">
         <label for="Celular" class="form-label">Celular:</label>
         <input id="Celular" formControlName="Celular" type="text" class="form-control" />
       </div>
-  
+
       <!-- Dirección -->
       <div class="col-md-6">
         <label for="Direccion" class="form-label">Dirección:</label>
         <input id="Direccion" formControlName="Direccion" type="text" class="form-control" />
       </div>
-  
+
       <!-- Municipio Dirección ID -->
       <div class="col-md-6">
         <label for="MunicipioDireccionId" class="form-label">Municipio Dirección:</label>
@@ -94,20 +95,31 @@
       </div>
 
       <div class="col-md-6">
-        <label for="archivo">Subir Archivo</label>
-        <input type="file" class="form-control" formControlName="archivo" id="archivo" accept="application/pdf, image/*">
+        <label for="archivo">Cédula</label>
+        <!-- Botón para abrir el diálogo de selección de archivo -->
+        <button type="button" class="btn btn-primary" (click)="triggerFileInput()">Seleccionar Archivo</button>
+
+        <!-- Input de archivo completamente oculto -->
+        <input type="file"
+               formControlName="archivo"
+               id="archivo"
+               accept="application/pdf, image/*"
+               #fileInput
+               (change)="EventoSeleccionarArchivo($event)"
+               style="display: none;" class="hidden-input">
       </div>
+
     </div>
     <div class="row">
-          <!-- Botón de Envío -->
-          <div class="col-md-2 col-12" style="margin-top: 30px;">
-            <button type="submit" class="btn btn-success btn-lg px-4" [disabled]="formulario.invalid">Enviar</button>
-          </div>
-          <!--Botón cancelar-->
-          <div class="col-md-2 col-12" style="margin-top: 30px;">
-            <button type="button" class="btn btn-danger btn-lg px-4" (click)="cancelar()">Cancelar</button>
-          </div>
+      <!-- Botón de Envío -->
+      <div class="col-md-2 col-12" style="margin-top: 30px;">
+        <button type="submit" class="btn btn-success btn-lg px-4" [disabled]="formulario.invalid">Enviar</button>
+      </div>
+      <!--Botón cancelar-->
+      <div class="col-md-2 col-12" style="margin-top: 30px;">
+        <button type="button" class="btn btn-danger btn-lg px-4" (click)="cancelar()">Cancelar</button>
+      </div>
     </div>
-    
+
   </div>
 </form>
