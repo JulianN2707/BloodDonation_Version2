@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { BloodDonationService } from '../../services/blood-donation.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-administrative-table',
@@ -7,39 +9,59 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [CommonModule],
 })
-export class AdministrativeTableComponent {
-  people = [
-    {
-      name: 'John Doe',
-      email: 'john.doe@gmail.com',
-      title: 'Software Engineer',
-      department: 'IT',
-      status: 'Active',
-      position: 'Senior',
-      imageUrl: 'https://mdbootstrap.com/img/new/avatars/8.jpg',
-    },
-    {
-      name: 'Alex Ray',
-      email: 'alex.ray@gmail.com',
-      title: 'Consultant',
-      department: 'Finance',
-      status: 'Onboarding',
-      position: 'Junior',
-      imageUrl: 'https://mdbootstrap.com/img/new/avatars/6.jpg',
-    },
-    {
-      name: 'Kate Hunington',
-      email: 'kate.hunington@gmail.com',
-      title: 'Designer',
-      department: 'UI/UX',
-      status: 'Awaiting',
-      position: 'Senior',
-      imageUrl: 'https://mdbootstrap.com/img/new/avatars/7.jpg',
-    },
-  ];
+export class AdministrativeTableComponent implements OnInit{
+
+  guidEnfermero = '9FF25FE2-0A6E-4D3C-A346-CFDEEA651C93';
+  guidPopayan ='90764425-B8BB-4316-AE66-A8B64068CB77';
+  people: any[] = [];
 
   selectedPerson: any = null;
   mostrar = false;
+
+  constructor(private router: Router, private donacionService: BloodDonationService) {}
+
+  ngOnInit() {
+    this.obtenerSolicitudesDonantes();
+  }
+
+  obtenerSolicitudesDonantes(){
+    
+    this.donacionService.obtenerSolicitudesDonante().subscribe(
+      (response) => {
+        response.data.forEach((solicitud : any) => {
+          const data = {
+            name : `${solicitud.personaPrimerNombre} ${solicitud.personaPrimerApellido}`,
+            email : solicitud.personaCorreoElectronico,
+            title : solicitud.tipoPersonaId == this.guidEnfermero ? 'Enfermero' : 'Usuario',
+            status : solicitud.estadoSolicitudUsuario,
+            department: solicitud.personaMunicipioDireccionId == this.guidPopayan ? 'Popayán' : 'No define',
+            fechaCreacion : solicitud.fechaCreacion,
+            documento : solicitud.personaNumeroDocumento,
+            direccion : solicitud.personaDireccion,
+            solicitudUsuarioId : solicitud.solicitudUsuarioId
+          }
+          this.people.push(data);
+        });
+      },
+      (error) => {
+        console.error('Error adding donation:', error);
+      }
+    );
+    
+
+    /*const data = {
+      name : 'Osiris chupalo',
+      email : 'osirisSeLaCome@gmail.com',
+      title : 'Usuario',
+      status : 'Aprobado',
+      department: 'Popayán',
+      fechaCreacion : '2024/12/11',
+      documento : '484763662',
+      direccion : 'calle 3 # 2-1'
+    }
+    this.people.push(data);
+    */
+  }
 
   selectPerson(person: any) {
     this.selectedPerson = person;
@@ -50,8 +72,23 @@ export class AdministrativeTableComponent {
     this.mostrar = false; // Cierra el modal
   }
 
-  approve() {
-    alert('Approved: ' + this.selectedPerson.name);
+  approve() {   
+    const request ={
+      solicitudUsuarioId : this.selectedPerson.solicitudUsuarioId
+    };
+
+    this.donacionService.aprobarSolicitudDonante(request).subscribe(
+      (response) => {
+        if(response.data == true){
+          alert('Aprobado: ' + this.selectedPerson.name);
+        }else{
+          alert('Error aprobando a: ' + this.selectedPerson.name);
+        }
+      },
+      (error) => {
+        console.error('Error adding donation:', error);
+      }
+    );
     this.closeModal(); // Cierra el modal después de aprobar
   }
 

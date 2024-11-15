@@ -19,6 +19,14 @@ export class BloodDonationService {
   crearDonante(request : any): Observable<any> {
     return this.http.post(`${this.BaseUrlSolicitud}/crear-solicitud-donante`, request);
   }
+
+  obtenerSolicitudesDonante(): Observable<any> {
+    return this.http.get(`${this.BaseUrlSolicitud}/obtener-solicitudesdonante`);
+  }
+
+  aprobarSolicitudDonante(request : any): Observable<any> {
+    return this.http.post(`${this.BaseUrlSolicitud}/aprobar-donante`, request);
+  }
   
   crearReservaDonacion(request : any): Observable<any> {
     return this.http.get(`${this.BaseUrlDonacion}/crear-reserva-donacion`);
