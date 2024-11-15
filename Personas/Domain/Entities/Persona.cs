@@ -8,6 +8,7 @@ public class Persona
     // [BsonRepresentation(BsonType.String)]  // Convierte el Guid a una cadena en MongoDB
     // [BsonElement("_id")]  // Mapea PersonaId al campo _id de MongoDB
     public Guid PersonaId { get; set; }
+    public Guid? MunicipioDireccionId { get; set; }
     public string NumeroDocumento { get; set; } = null!;
     public DateTime FechaExpedicionDocumento { get; set; }
     public string? PrimerApellido { get; set; }
@@ -17,6 +18,5 @@ public class Persona
     public string? CorreoElectronico { get; set; }
     public string? Celular { get; set; }
     public string? Direccion { get; set; }
-    public int? MunicipioDireccionId { get; set; }
 
 }

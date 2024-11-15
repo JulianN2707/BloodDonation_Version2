@@ -15,7 +15,7 @@ public class CrearDonanteCommand : IRequest<CrearDonanteResponse>
     public string? CorreoElectronico { get; set; }
     public string? Celular { get; set; }
     public string? Direccion { get; set; }
-    public int? MunicipioDireccionId { get; set; }
+    public Guid? MunicipioDireccionId { get; set; }
     public int TipoCargoPersonaId { get; set; }
     public List<CrearArchivoDto> Archivos { get; set; }
 
