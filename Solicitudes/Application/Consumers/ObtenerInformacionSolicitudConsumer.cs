@@ -37,6 +37,9 @@ public class ObtenerInformacionSolicitudConsumer : IConsumer<ObtenerInformacionS
                 SegundoNombre = solicitud.PersonaSegundoNombre,
                 MunicipioDireccionId = solicitud.PersonaMunicipioDireccionId,
                 FechaExpedicionDocumento = (DateTime)solicitud.PersonaFechaExpedicionDocumento,
+                TipoPersonaId=solicitud.TipoPersonaId,
+                FactorRh = solicitud.TipoSangre.FactorRH,
+                GrupoSanguineo = solicitud.TipoSangre.Grupo,
                 SagaQueueName = data.SagaQueueName
             };
             var endpoint = await context.GetSendEndpoint(new Uri($"queue:crear-persona"));         

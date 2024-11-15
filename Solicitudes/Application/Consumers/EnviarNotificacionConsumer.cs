@@ -22,22 +22,22 @@ public class EnviarNotificacionConsumer : IConsumer<EnviarNotificacionMessage>
         var data = context.Message;
         if (data is not null)
         {
-            if (data.Estado == true)
-            {
-                foreach (var item in data.InformacionCorreo)
-                {
-                    string bodyContent = _emailService.GetEMailBody(item.nombreTemplate, item.informacionCorreo);
-                    await _emailService.SendNotification(bodyContent, item.recipientes);
-                }
-            }
-            else //Si el estado fue false se debe enviar un correo indicando que fallo
-            {
-                foreach (var item in data.InformacionCorreo)
-                {
-                    string bodyContent = _emailService.GetEMailBody(item.nombreTemplateError, item.informacionCorreo);
-                    await _emailService.SendNotification(bodyContent, item.recipientes);
-                }
-            }
+            // if (data.Estado == true)
+            // {
+            //     foreach (var item in data.InformacionCorreo)
+            //     {
+            //         string bodyContent = _emailService.GetEMailBody(item.nombreTemplate, item.informacionCorreo);
+            //         await _emailService.SendNotification(bodyContent, item.recipientes);
+            //     }
+            // }
+            // else //Si el estado fue false se debe enviar un correo indicando que fallo
+            // {
+            //     foreach (var item in data.InformacionCorreo)
+            //     {
+            //         string bodyContent = _emailService.GetEMailBody(item.nombreTemplateError, item.informacionCorreo);
+            //         await _emailService.SendNotification(bodyContent, item.recipientes);
+            //     }
+            // }
             var notificacion = new NotificacionExitosaEvent
             {
                 CorrelationId = data.CorrelationId,

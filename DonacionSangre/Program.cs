@@ -97,7 +97,7 @@ if (providerMQ.Equals("activeMQ"))
             
             cfg.MessageTopology.SetEntityNameFormatter(new MessageNameFormatter());
 
-            cfg.ReceiveEndpoint($"crear-archivos", x =>
+            cfg.ReceiveEndpoint($"crear-donante", x =>
             {
                 x.ConfigureConsumeTopology = false;
                 x.ConfigureConsumer<CrearDonanteConsumer>(context, cfg =>

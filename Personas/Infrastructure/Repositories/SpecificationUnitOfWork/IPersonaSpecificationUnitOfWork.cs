@@ -8,6 +8,7 @@ public interface IPersonaSpecificationUnitOfWork : IDisposable
 {
 
    public IRepository<Persona> _personaRepository { get; }
+   public IRepository<TipoPersona> _tipoPersonaRepository { get; }
 
     Task<int> SaveChangesAsync();
 

@@ -20,6 +20,9 @@ public class CrearPersonaMessage{
     public string? Direccion { get; set; }
     public Guid? MunicipioDireccionId { get; set; }
     public DateTime FechaExpedicionDocumento { get; set; }
+    public Guid TipoPersonaId { get; set; }
+    public string GrupoSanguineo { get; set; }
+    public string FactorRh { get; set; }
     public string SagaQueueName { get; set; } = string.Empty;
 }
 public class RollbackCrearPersonaMessage 
@@ -133,6 +136,10 @@ public class PersonaCreadaEvent
     public string CorreoElectronico { get; set; }
     public string PrimerNombre { get; set; }
     public string PrimerApellido { get; set; }
+    public string Cargo { get; set; }
+    public Guid MunicipioDireccionId { get; set; }
+    public string GrupoSanguineo { get; set; }
+    public string FactorRh { get; set; }
 
 
 }
@@ -179,8 +186,12 @@ public class EnviarCreacionDonanteMessage
     public Guid CorrelationId { get; set; }
     public Guid SolicitudUsuarioId { get; set; }
     public Guid PersonaId { get; set; }
+    public Guid MunicipioDireccionId { get; set; }
+    public string GrupoSanguineo { get; set; }
+    public string FactorRh { get; set; }
     public Guid UsuarioId { get; set; }
     public string CorreoElectronicoPersona { get; set; }
+    public string? Cargo { get; set; }
     public string PersonaDireccion { get; set; }
     public string PersonaCelular { get; set; }
     public string PersonaPrimerNombre { get; set; }
@@ -199,4 +210,7 @@ public class RollBackCreatePersonaEvent
     public Guid PersonaId { get; set; }
     public Guid SolicitudUsuarioId { get; set; }
 }
+
+
+
 

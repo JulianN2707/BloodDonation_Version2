@@ -21,6 +21,10 @@ public class SolicitudAprobarDonanteStateInstance : SagaStateMachineInstance
     public Guid SolicitudUsuarioId { get; set; }
     public Guid UsuarioId { get; set; }
     public Guid PersonaId { get; set; }
+    public Guid MunicipioDireccionId { get; set; }
+    public string GrupoSanguineo { get; set; }
+    public string FactorRh { get; set; }
+    public string? Cargo { get; set; }
     public string? PersonaDireccion { get; set; }
     public string? PersonaNumeroCelular { get; set; }
     public string? PersonaCorreoElectronico { get; set; }

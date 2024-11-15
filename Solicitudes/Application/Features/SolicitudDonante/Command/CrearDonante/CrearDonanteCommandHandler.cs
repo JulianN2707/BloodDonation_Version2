@@ -5,6 +5,7 @@ using MediatR;
 using Solicitudes.Domain.Entities;
 using Solicitudes.Domain.ValueObjects;
 using Solicitudes.Infrastructure.Repositories.SpecificationUnitOfWork;
+using ETipoSangre = Solicitudes.Domain.ValueObjects.TipoSangre;
 
 namespace Solicitudes.Application.Features.SolicitudDonante.Command.CrearDonante;
 
@@ -38,7 +39,7 @@ public class CrearDonanteCommandHandler : IRequestHandler<CrearDonanteCommand, C
     public async Task<SolicitudUsuario> CrearSolicitud(CrearDonanteCommand request)
     {
         var estadoUsuarioPendiente = new Guid("7C3E4D1F-6D59-431B-89F1-2E7F5BDE9A8D");
-        var solicitud = SolicitudUsuario.CrearSolicitud(request.NumeroDocumento, TipoSangre.Crear(request.GrupoSanguineo, request.FactorRh), request.FechaExpedicionDocumento,request.PrimerApellido,
+        var solicitud = SolicitudUsuario.CrearSolicitud(request.NumeroDocumento, ETipoSangre.Crear(request.GrupoSanguineo, request.FactorRh), request.FechaExpedicionDocumento,request.PrimerApellido,
         request.PrimerNombre,request.SegundoApellido,request.SegundoNombre,request.CorreoElectronico, estadoUsuarioPendiente, request.TipoPersonaId,request.Celular,
         request.Direccion,request.MunicipioDireccionId);
         await _solicitudesSpecificationUnitOfWork._solicitudRepository.AddAsync(solicitud);
