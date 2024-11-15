@@ -38,7 +38,8 @@ export class DonationsComponent implements OnInit {
 
   inicializarFormularioReserva(): FormGroup{
     return this.fb.group({
-      fechaReserva: ['', Validators.required]
+      fechaReserva: ['', Validators.required],
+      usuarioId : ['', Validators.required]
     });
   }
 
@@ -54,7 +55,7 @@ export class DonationsComponent implements OnInit {
   submitReserva(): void {
     if (this.formularioReserva.valid) {
       const requestReservaDonacion = {
-        personaId : "3EB55A17-2AFD-49CC-9D75-08DCE14DE84F",
+        personaId : this.formularioReserva.get('usuarioId')?.value,
         fechaDonacion : this.formularioReserva.get('fechaReserva')?.value
       }
       console.log(requestReservaDonacion);
